@@ -1,0 +1,151 @@
+<?php
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
+?>
+<script>
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+    </script>
+<style>
+    div.content {
+        margin-top: -480px;
+        margin-left: 220px;
+        padding: 1px 16px;
+        height: auto;
+    }
+
+    .navbar-form {
+        border-radius: 8px;
+    }
+    table td {
+    font-size: 1rem;
+    font-weight: 600;
+}
+    table th{
+        font-size: 1.3rem;
+        font-weight: 800;
+        background-color: grey;
+    }
+</style>
+<div class="content" id="prn">
+    <form action="index.php?school" id="frm" method="POST" class="navbar-form navbar-left navbar-inverse" style="width:100%;padding:5px;">
+        <span class="text-light bg-dark"> Filter On : </span>
+        <select name="searchfor" id="search_in" class="dropdown">
+            <option disabled selected> -Select- </option>
+            <option value="sch_no" <?php if($search_in=="sch_no") { echo "selected"; } ?>>School No.</option>
+            <option value="affno" <?php if($search_in=="affno") { echo "selected"; } ?>>Affiliation No.</option>
+            <option value="abbr_name" <?php if($search_in=="abbr_name") { echo "selected"; } ?>>School Name</option>
+            <option value="distt" <?php if($search_in=="distt") { echo "selected"; } ?>>District</option>
+            <option value="state" <?php if($search_in=="state") { echo "selected"; } ?>>State</option>
+            <option value="add" <?php if($search_in=="add") { echo "selected"; } ?>>Address</option>
+            <option value="pin" <?php if($search_in=="pin") { echo "selected"; } ?>>School Pin</option>
+            <option value="status" <?php if($search_in=="status") { echo "selected"; } ?>>Status</option>
+            <option disabled>---------------------------</option>
+            <option value="all" <?php if($search_in=="all") { echo "selected"; } ?>>Show All Schools</option>
+        </select>
+        <span class="text-light bg-dark"> Session : </span>
+        <select name="schsession" id="schsession_in" class="dropdown">
+            <option disabled selected> -Select Session- </option>
+            <option value="2018-19" <?php if($schsession_in=="2018-19") { echo "selected"; } ?>> 2018-19 </option>
+            <option value="2019-20" <?php if($schsession_in=="2019-20") { echo "selected"; } ?>> 2019-20 </option>
+            <option value="2020-21" <?php if($schsession_in=="2020-21") { echo "selected"; } ?>> 2020-21 </option>
+        </select>
+        <div class="input-group">
+            <input type="text" name="searchtext" placeholder="Enter" value="<?php echo "$searchtext"; ?>" class="form-control">
+            <div class="input-group-btn">
+                <button class="btn aqua-gradient" type="submit" name="schoolsearch" style="height:34px;margin-top:0px;">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <?php if(isset($_POST['schoolsearch'])){ ?>
+    <span style="float:left;margin-top:0px;color:red;"> <b>Schools Found:
+            <?php
+    $row_sch_count = mysqli_fetch_array(mysqli_query($conn,$sch_count));
+    $schcounter = $row_sch_count['COUNT(sch_no)'];
+    echo "$schcounter"; ?>
+        </b> </span>
+    <span style="float:right;margin-top:0px;color:red"> <b>Updated On :
+            <?php
+    $row_update = mysqli_fetch_array(mysqli_query($conn,"SELECT DISTINCT upd_date FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)));
+    $upd_date = $row_update['upd_date'];
+    echo date('d-m-Y', strtotime($upd_date)); ?>
+        </b> </span>
+         <input class="btn blue-gradient animated slideInLeft" type="button" onclick="printDiv('prn')" value="Print!" style="font-size:12px;padding:5px">
+    <div class="table">
+        <table class="table" id="sch">
+            <thead>
+                <tr>
+                    <th>sch_no</th>
+                    <th>oldsch_no</th>
+                    <th>affno</th>
+                    <th>abbr_name</th>
+                    <th>distt</th>
+                    <th>state</th>
+                    <th>prname</th>
+                    <th>pmobile</th>
+                    <th>email</th>
+                    <th>schtype</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+               <?php } ?>
+                <?php
+                            if(isset($_POST['schoolsearch'])){
+                            if (!$result) {
+                                die("Connection failed: " . mysqli_connect_error());
+                            } else {
+                            while($row = mysqli_fetch_array($result)){
+                                 $sch_no = $row['nsch_no'];
+                                 $oldsch_no = $row['sch_no'];
+                                 $affno = $row['affno'];
+                                 $abbr_name = $row['abbr_name'];
+                                 $prname = $row['prname'];
+                                 $email = $row['email'];
+                                 $pmobile = $row['pmobile'];
+                                 $status = $row['status'];
+                                 $schtype = $row['schtype'];
+                                 $distt = $row['distt'];
+                                 $state = $row['state'];
+                            ?>
+                <tr>
+                    <td><?php echo "$sch_no"; ?></td>
+                    <td><?php echo "$oldsch_no"; ?></td>
+                    <td><?php echo "$affno"; ?></td>
+                    <td><?php echo "$abbr_name"; ?></td>
+                    <td><?php echo "$distt"; ?></td>
+                    <td><?php echo "$state"; ?></td>
+                    <td><?php echo "$prname"; ?></td>
+                    <td><?php echo "$pmobile"; ?></td>
+                    <td><?php echo "$email"; ?></td>
+                    <td><?php echo "$schtype"; ?></td>
+                    <td><?php echo "$status"; ?></td>
+                </tr>
+                <?php
+                                }
+                                }
+                                }
+                            ?>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<?php }else{
+        header("location: noaccess.php");
+    }?>
