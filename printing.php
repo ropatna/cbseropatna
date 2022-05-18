@@ -13,12 +13,19 @@
 <body>
     <?php
         if(isset($_POST['print'])){
+            $ryear = $_POST['ryear'];
             $prntype = $_POST['prntype'];
             $rclass = $_POST['rclass'];
             $casetype = $prntype.$rclass;
+            if($ryear=="2018"){
+                $casetype = $prntype.$rclass.$ryear;
+            }
             switch($casetype){
                 case "marksheetxii" :
                     include "includes/marksheetxii.php";
+                    break;
+                case "marksheetx2018" :
+                    include "includes/marksheetx18.php";
                     break;
                 case "marksheetx" :
                     include "includes/marksheetx.php";

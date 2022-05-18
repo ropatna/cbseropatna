@@ -5,7 +5,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-if( $_SESSION["cat"] == "admin"){
+if( $_SESSION["cat"] == "ab" || $_SESSION["cat"] == "exam" || $_SESSION["cat"] == "admin"){
 ?>
 <script>
         function printDiv(divName) {
@@ -56,6 +56,7 @@ if( $_SESSION["cat"] == "admin"){
         <select name="dcsyear" id="dcsyear" class="dropdown">
             <option disabled selected> -Select Session- </option>
             <option value="2021" <?php if($dcsyear=="2021") { echo "selected"; } ?>> 2021 </option>
+            <option value="2022" <?php if($dcsyear=="2022") { echo "selected"; } ?>> 2022 </option>
         </select>
         <div class="input-group">
             <input type="text" name="dcstext" placeholder="Enter" value="<?php echo "$dcstext"; ?>" class="form-control">

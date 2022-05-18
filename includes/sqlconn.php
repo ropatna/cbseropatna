@@ -341,31 +341,31 @@
         switch($dcssearch){
             case "date" :
                 $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."M WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."M WHERE " . $dcssearch . "='" . $dcstext . "'";
                 break;
             case "cen_no" :
                 $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."M WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."M WHERE " . $dcssearch . "='" . $dcstext . "'";
                 break;
             case "csch_no" :
                 $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."M WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."M WHERE " . $dcssearch . "='" . $dcstext . "'";
                 break;
             case "cdistt" :
                 $qcn .= "WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."M WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."M WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
                 break;
             case "all" :
                 $dcstext = "";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."M";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."M";
                 break;
         }
-        $dcssql = "SELECT * FROM dcs".$dcsyear."c " . $qcn;
+        $dcssql = "SELECT * FROM dcs".$dcsyear."M " . $qcn;
         $dcs = mysqli_query($conn,$dcssql);
     }
     /* *****************************************************Center Notification tab ********************************************************* */
