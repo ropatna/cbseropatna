@@ -118,9 +118,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <option disabled selected> -Select- </option>
                 <?php $stafflist = [
                     'Sh. Shambhu Prasad, SO',
-                    'Sh. Mohan R Jhurani, SO',
+                    'Sh. V. Lambiakliyan, SO',
                     'Sh. Ramanuj Prasad, SO',
-                    'Sh. Himanshu Jonwal, JAO',
+                    'Sh. Guru Dutt Rohilla',
+                    'Sh. Andeep Kumar',
+                    'Sh. Jyoti Prasad',
+                    'Sh. Shambhu kant roy',
+                    'Sh. Aditya Kumar, SO',
                     'Sh. Rajesh Kumar, Sup.',
                     'Sh. Manoj Kumar Singh, Sup.',
                     'Sh. Prabhat Kumar Singh, Sup.',
@@ -158,6 +162,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <input type="hidden" name="cnsdist" value="<?php echo $cnsdist; ?>">
             <input type="hidden" name="cnsabbr_name" value="<?php echo str_replace("'","","$cnsabbr_name"); ?>">
             <input type="hidden" name="hesubname" value="<?php echo $hesubname; ?>">
+            <input type="hidden" name="cnsname" value="<?php echo $cnsname; ?>">
+            <input type="hidden" name="cnsmobile" value="<?php echo $cnsmobile; ?>">
             <br><br><br>
             <input type="button" value="ADD MORE" onclick="add_row()" class="btn blue-gradient animated flipInX">
             <input type="submit" name="submit_row" value="SUBMIT" class="btn blue-gradient animated flipInY">

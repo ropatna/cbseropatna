@@ -86,7 +86,11 @@
         $dob1 = date('jS F', strtotime($dob));
         $dob2 = date('Y', strtotime($dob));
         include 'includes/dobtext.php';
-        $dob3 = datetext($dob2);
+        if($dob2=="2000"){
+            $dob3 = "TWO THOUSAND";
+        }else{
+            $dob3 = datetext($dob2);
+        }
         $dob_text = $dob1." ".$dob3;
     }
 ?>

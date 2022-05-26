@@ -1,5 +1,5 @@
 <?php
-
+$conn = mysqli_connect('localhost','root','','cbse');
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
@@ -102,11 +102,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $vhesubname=$rowall['hesubname'];
         $vhemobile=$rowall['hemobile'];
         $vcnssch_no=$rowall['cns_schno'];
-        $rowcns = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM he2021c WHERE cns_schno=".$vcnssch_no));
-        $vcnsabbr_name=$rowcns['abbr_name'];
-        $vcnsname=$rowcns['cnsname'];
-        $vcnsmobile=$rowcns['cnsmobile'];
-        $vcnsdist=$rowcns['cnsdist'];
+        $vcnsabbr_name=$rowall['cnsabbr_name'];
+        $vcnsname=$rowall['cnsname'];
+        $vcnsmobile=$rowall['cnsmobile'];
+        $vcnsdist=$rowall['cnsdist'];
         $dstat=$rowall['dstat'];
         $newdstat = date("d-m-Y", strtotime($dstat));
         $rstat=$rowall['rstat'];

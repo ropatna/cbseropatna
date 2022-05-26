@@ -53,7 +53,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </form>
     </div>
     <?php } elseif(isset($_POST['spothesearch'])){
-        $hespot = mysqli_query($conn,"SELECT * FROM spotev2021c WHERE heno=".$_POST['heno']); ?>
+        $hespot = mysqli_query($conn,"SELECT * FROM spotev2022m WHERE heno=".$_POST['heno']); ?>
     <table class="table table-striped table-bordered table-sm">
         <thead>
             <tr>
@@ -73,11 +73,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $vhesubname=$rowhe['hesubname'];
         $vhemobile=$rowhe['hemobile'];
         $vcnssch_no=$rowhe['cns_schno'];
-        $rowcns = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM he2021c WHERE cns_schno=".$vcnssch_no));
-        $vcnsabbr_name=$rowcns['abbr_name'];
-        $vcnsname=$rowcns['cnsname'];
-        $vcnsmobile=$rowcns['cnsmobile'];
-        $vcnsdist=$rowcns['cnsdist'];
+        $vcnsabbr_name=$rowhe['cnsabbr_name'];
+        $vcnsname=$rowhe['cnsname'];
+        $vcnsmobile=$rowhe['cnsmobile'];
+        $vcnsdist=$rowhe['cnsdist'];
         $vdstat=$rowhe['dstat'];
         $newddate = date("d-m-Y", strtotime($vdstat));
         $vrstat=$rowhe['rstat'];
@@ -141,9 +140,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <option disabled selected> -Select- </option>
             <?php $stafflist = [
                 'Sh. Shambhu Prasad, SO',
-                'Sh. Mohan R Jhurani, SO',
+                'Sh. V. Lambiakliyan, SO',
                 'Sh. Ramanuj Prasad, SO',
-                'Sh. Himanshu Jonwal, JAO',
+                'Sh. Guru Dutt Rohilla',
+                'Sh. Andeep Kumar',
+                'Sh. Jyoti Prasad',
+                'Sh. Shambhu kant roy',
+                'Sh. Aditya Kumar, SO',
                 'Sh. Rajesh Kumar, Sup.',
                 'Sh. Manoj Kumar Singh, Sup.',
                 'Sh. Prabhat Kumar Singh, Sup.',
@@ -180,7 +183,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $today = date("d/m/Y");
         $receivedby = $_POST['staff'];
         if($option=="yes"){
-            $q1 = mysqli_query($conn,"UPDATE spotev2021c SET rstat='".$today."', receivedby='".$receivedby."' WHERE heno='".$heno."'");
+            $q1 = mysqli_query($conn,"UPDATE spotev2022m SET rstat='".$today."', receivedby='".$receivedby."' WHERE heno='".$heno."'");
         }
         if($q1){
             echo "<script>alert('Bag receive Status Updated..');</script>";
