@@ -63,6 +63,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
             <option disabled selected> -Select Year- </option>
             <option value="2019" <?php if($heyear=="2019") { echo "selected"; } ?>> 2019 </option>
             <option value="2020" <?php if($heyear=="2020") { echo "selected"; } ?>> 2020 </option>
+            <option value="2022" <?php if($heyear=="2022") { echo "selected"; } ?>> 2022 </option>
         </select>
         <label class="text-light bg-dark">Exam Type : </label>
         <select name="heexamtype" id="rexamtype" class="dropdown">

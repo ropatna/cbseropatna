@@ -20,11 +20,11 @@ if(( $_SESSION["cat"] == "admin")){
     }
 
     table td {
-    font-size: 1rem;
+    font-size: 1.4rem;
     font-weight: 600;
     }
     table th{
-        font-size: 1.3rem;
+        font-size: 2rem;
         font-weight: 800;
         background-color: grey;
     }
@@ -54,6 +54,7 @@ if(( $_SESSION["cat"] == "admin")){
             <option disabled selected> -Select Year- </option>
             <option value="2019" <?php if($year=="2019") { echo "selected"; } ?>> 2019 </option>
             <option value="2020" <?php if($year=="2020") { echo "selected"; } ?>> 2020 </option>
+            <option value="2022" <?php if($year=="2022") { echo "selected"; } ?>> 2022 </option>
         </select>
         <label class="text-light bg-dark">Exam Type : </label>
         <select name="examtype" id="examtype" class="dropdown">
@@ -76,10 +77,7 @@ if(( $_SESSION["cat"] == "admin")){
         <h2>CENTER NOTIFICATION FOR <?php echo "$year"; ?> <?php if($examtype=="m"){echo "MAIN";}if($examtype=="c"){echo "COMPART";} ?> EXAM</h2>
     </center><br><br>
     <span style="float:right;margin-top:-30px;color:red"> <b>Updated On :
-            <?php
-    $row_upd = mysqli_fetch_array(mysqli_query($conn,"SELECT DISTINCT upd_dt FROM center".$year.$examtype));
-    $upd_dt = $row_upd['upd_dt'];
-    echo date('jS M Y', strtotime($upd_dt)) ?>
+            <?php echo "25-08-2022"; ?>
         </b> </span>
     <span style="float:left;margin-top:-30px;color:red;"> <b>Centers Found:
             <?php
@@ -91,36 +89,26 @@ if(( $_SESSION["cat"] == "admin")){
     <?php
     while($rowcen = mysqli_fetch_array($runcen)){
 		$cen_no = $rowcen['cen_no'];
-        $ncen_sch_no = $rowcen['ncen_sch_no'];
-        $nsch_no = $rowcen['nsch_no'];
+        $ncen_sch_no = $rowcen['csch_no'];
         $sch_no = $rowcen['sch_no'];
-        $cen_sch_no = $rowcen['cen_sch_no'];
 		$cabbr_name = $rowcen['cabbr_name'];
-		$sabbr_name = $rowcen['sabbr_name'];
-		$centdist = $rowcen['centdist'];
-		$schdist = $rowcen['schdist'];
-		$schstate = $rowcen['schstate'];
-		$censchstat = $rowcen['censchstat'];
-		if($year=="2020"){
-            $noc1020 = $rowcen['noc1020'];
-		    $noc1220 = $rowcen['noc1220'];
-            $count = "SELECT SUM(noc1020),SUM(noc1220),SUM(noc1020)+SUM(noc1220) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
-            $runcount = mysqli_query($conn,$count);
-            $rowcount = mysqli_fetch_array($runcount);
-            $cnt1020 = $rowcount['SUM(noc1020)'];
-            $cnt1220 = $rowcount['SUM(noc1220)'];
-            $tot2020 = $rowcount['SUM(noc1020)+SUM(noc1220)'];
-        }
-        if($year=="2019"){
-            $noc1020 = $rowcen['noc1019'];
-		    $noc1220 = $rowcen['noc1219'];
-            $count = "SELECT SUM(noc1019),SUM(noc1219),SUM(noc1019)+SUM(noc1219) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
-            $runcount = mysqli_query($conn,$count);
-            $rowcount = mysqli_fetch_array($runcount);
-            $cnt1020 = $rowcount['SUM(noc1019)'];
-            $cnt1220 = $rowcount['SUM(noc1219)'];
-            $tot2020 = $rowcount['SUM(noc1019)+SUM(noc1219)'];
-        }
+		$sabbr_name = $rowcen['abbr_name'];
+		$centdist = $rowcen['cdistt'];
+		$schdist = $rowcen['distt'];
+		$schstate = $rowcen['state'];
+		$censchstat = $rowcen['cstate'];
+        $noc1020 = $rowcen['noc10'];
+		$noc1220 = $rowcen['noc12'];
+		$cpr_name = $rowcen['cpr_name'];
+		$cpr_mob = $rowcen['cpr_mob'];
+		$spr_name = $rowcen['spr_name'];
+		$sp_mob = $rowcen['sp_mob'];
+        $count = "SELECT SUM(noc10),SUM(noc12),SUM(noc10)+SUM(noc12) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
+        $runcount = mysqli_query($conn,$count);
+        $rowcount = mysqli_fetch_array($runcount);
+        $cnt1020 = $rowcount['SUM(noc10)'];
+        $cnt1220 = $rowcount['SUM(noc12)'];
+        $tot2020 = $rowcount['SUM(noc10)+SUM(noc12)'];
     ?>
     <center>
         <table>
@@ -129,16 +117,16 @@ if(( $_SESSION["cat"] == "admin")){
             <tr>
                 <th style="background-color: gray; width:150px;text-align:left;"> <?php echo "$censchstat"; ?> </th>
                 <th style="background-color: gray; width:150px;text-align:left;"> <?php echo "$cen_no"; ?> <br> <?php echo "$centdist"; ?> </th>
-                <th style="background-color: gray; width:150px;text-align:left;"> ( <?php echo "$ncen_sch_no"; ?> / <?php echo "$cen_sch_no"; ?> ) </th>
-                <th style="background-color: gray;width:700px;text-align:left;"> <?php echo "$cabbr_name"; ?> </th>
+                <th style="background-color: gray; width:150px;text-align:left;"> ( <?php echo "$ncen_sch_no"; ?> ) </th>
+                <th style="background-color: gray;width:700px;text-align:left;"> <?php echo "$cabbr_name"; ?> <br> CPR NAME: <?php echo "$cpr_name"; ?> <br> CPR CONTACT: <?php echo "$cpr_mob"; ?> </th>
                 <th style="background-color: gray;width:80px;text-align:left;"> X<sup>th</sup> <br> <?php echo "$cnt1020"; ?> <br> Total: </th>
                 <th style="background-color: gray;width:80px;text-align:left;"> XII<sup>th</sup> <br> <?php echo "$cnt1220"; ?> <br> <?php echo "$tot2020"; ?> </th>
             </tr>
             <tr>
                 <td style=" width:150px;text-align:left;"> <?php echo "$schstate"; ?> </td>
                 <td style=" width:150px;text-align:left;"> <?php echo "$schdist"; ?> </td>
-                <td style=" width:150px;text-align:left;"> ( <?php echo "$nsch_no"; ?> / <?php echo "$sch_no"; ?> ) </td>
-                <td style=" width:700px;text-align:left;"> <?php echo "$sabbr_name"; ?> </td>
+                <td style=" width:150px;text-align:left;"> ( <?php echo "$sch_no"; ?> ) </td>
+                <td style=" width:700px;text-align:left;"> <?php echo "$sabbr_name"; ?> <br> PR NAME: <?php echo "$spr_name"; ?> <br> PR CONTACT: <?php echo "$sp_mob"; ?> </td>
                 <td style=" width:80px;text-align:left;"> <?php echo "$noc1020"; ?> </td>
                 <td style=" width:80px;text-align:left;"> <?php echo "$noc1220"; ?> </td>
             </tr>
@@ -146,8 +134,8 @@ if(( $_SESSION["cat"] == "admin")){
             <tr>
                 <td style=" width:150px;text-align:left;"> <?php echo "$schstate"; ?> </td>
                 <td style=" width:150px;text-align:left;"> <?php echo "$schdist"; ?></td>
-                <td style=" width:150px;text-align:left;"> ( <?php echo "$nsch_no"; ?> / <?php echo "$sch_no"; ?> ) </td>
-                <td style=" width:700px;text-align:left;"> <?php echo "$sabbr_name"; ?></td>
+                <td style=" width:150px;text-align:left;"> ( <?php echo "$sch_no"; ?> ) </td>
+                <td style=" width:700px;text-align:left;"> <?php echo "$sabbr_name"; ?> <br> PR NAME: <?php echo "$spr_name"; ?> <br> PR CONTACT: <?php echo "$sp_mob"; ?> </td>
                 <td style=" width:80px;text-align:left;"> <?php echo "$noc1020"; ?> </td>
                 <td style=" width:80px;text-align:left;"> <?php echo "$noc1220"; ?> </td>
             </tr>

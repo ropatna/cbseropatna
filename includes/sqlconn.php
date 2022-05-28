@@ -389,41 +389,37 @@
                 $queryCon .= " WHERE ".$ssearch_in." LIKE '%" . $centext . "%'";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE cabbr_name LIKE '%" . $centext . "%'";
                 break;
-            case "sabbr_name" :
+            case "abbr_name" :
                 $queryCon .= " WHERE cen_no=(SELECT cen_no FROM center".$year.$examtype." WHERE sabbr_name LIKE '%" . $centext . "%')";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE sabbr_name LIKE '%" . $centext . "%'";
                 break;
-            case "centdist" :
+            case "cdistt" :
                 $queryCon .= " WHERE " . $ssearch_in . "='" . $centext."'";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE ".$ssearch_in."='".$centext."'";
                 break;
-            case "schdist" :
+            case "distt" :
                 $queryCon .= " WHERE " . $ssearch_in . "='" . $centext."'";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE ".$ssearch_in."='".$centext."'";
                 break;
-            case "censchstat" :
+            case "cstate" :
                 $queryCon .= " WHERE " . $ssearch_in . "='" . $centext."'";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE ".$ssearch_in."='".$centext."'";
                 break;
-            case "schstate" :
+            case "state" :
                 $queryCon .= " WHERE " . $ssearch_in . "='" . $centext."'";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE ".$ssearch_in."='".$centext."'";
                 break;
-            case "censchtype" :
+            case "cschtype" :
                 $queryCon .= " WHERE " . $ssearch_in . "='" . $centext."'";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE ".$ssearch_in."='".$centext."'";
                 break;
-            case "schschtype" :
+            case "schtype" :
                 $queryCon .= " WHERE cen_no IN (SELECT cen_no FROM center".$year.$examtype." WHERE " . $ssearch_in . "='" . $centext."')";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE ".$ssearch_in."='".$centext."'";
                 break;
-            case "school" :
-                $queryCon .= " WHERE cen_no=(SELECT cen_no FROM center".$year.$examtype." WHERE nsch_no='" . $centext . "' OR sch_no='".$centext."')";
-                $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE nsch_no='" . $centext . "' OR sch_no='".$centext."'";
-                break;
             case "self" :
-                $queryCon .= " WHERE cen_no IN (SELECT cen_no FROM center".$year.$examtype." WHERE sch_no=cen_sch_no OR nsch_no=ncen_sch_no)";
-                $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE sch_no=cen_sch_no OR nsch_no=ncen_sch_no";
+                $queryCon .= " WHERE cen_no IN (SELECT cen_no FROM center".$year.$examtype." WHERE sch_no=csch_no)";
+                $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE sch_no=csch_no";
                 break;
             case "private" :
                 $queryCon .= " WHERE cen_no IN (SELECT cen_no FROM center".$year.$examtype." WHERE sch_no='99999')";
@@ -648,6 +644,35 @@ if(isset($_POST['submit_row']))
     if(isset($_POST['shasearch'])){
         $shatext = $_POST['shatext'];
         $shasearch_in = $_POST['searchsha'];
+        $stafflist = [
+            'Sh. Shambhu Prasad, SO',
+            'Sh. V. Lambiakliyan, SO',
+            'Sh. Ramanuj Prasad, SO',
+            'Sh. Guru Dutt Rohilla',
+            'Sh. Andeep Kumar',
+            'Sh. Jyoti Prasad',
+            'Sh. Shambhu kant roy',
+            'Sh. Aditya Kumar, SO',
+            'Sh. Rajesh Kumar, Sup.',
+            'Sh. Manoj Kumar Singh, Sup.',
+            'Sh. Prabhat Kumar Singh, Sup.',
+            'Md. Fazal Imam, Sup.',
+            'Sh. Pankaj Gupta, PA',
+            'Sh. Chhote Lal, Sup.',
+            'Sh. Vatan Kumar, Sup.',
+            'Sh. Pankaj, Accountant',
+            'Sh. Umesh Sharma, SA',
+            'Sh. Niraj Kumar, SA',
+            'Sh. Dharmendra Kumar, SA',
+            'Sh. Jitendra Kumar, SA',
+            'Sh. Chandan Kumar, SA',
+            'Smt. Nidhi Kumari, SA',
+            'Sh. Amarnath Jha, SA',
+            'Sh. Sachin Kumar, SA',
+            'Sh. Sanjeev Kumar Sinha, SA',
+            'Sh. Lal Bihari Manjhi, MTS',
+            'Sh. Puran Bahadur, MTS'
+            ];
         switch($shasearch_in){
             case "dstat" :
                 $qrysha .= " WHERE ".$shasearch_in."='".$shatext."'";
@@ -665,14 +690,12 @@ if(isset($_POST['submit_row']))
                 $qrysha .= " WHERE ".$shasearch_in."='".$shatext."'";
                 $ctrhe = "SELECT COUNT(*) FROM spotev2022m WHERE ".$shasearch_in."='".$shatext."'";
                 break;
-            case "lbm" :
-                $qrysha .= " WHERE receivedby='Sh. Lal Bihari Manjhi, MTS' ORDER BY cnsdist,cns_schno,hesub";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022m WHERE receivedby='Sh. Lal Bihari Manjhi, MTS'";
-                break;
-            case "nsa" :
-                $qrysha .= " WHERE receivedby='Sh. Niraj Kumar, SA' ORDER BY cnsdist,cns_schno,hesub";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022m WHERE receivedby='Sh. Niraj Kumar, SA'";
-                break;
+            // foreach ($stafflist as $list){
+            //     case $list :
+            //         $qrysha .= " WHERE receivedby='".$list."' ORDER BY cnsdist,cns_schno,hesub";
+            //         $ctrhe = "SELECT COUNT(*) FROM spotev2022m WHERE receivedby='".$list."'";
+            //         break;
+            // }
             case "all" :
                 $qrysha = " ORDER BY heno";
                 $shatext = "";
