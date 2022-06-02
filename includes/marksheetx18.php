@@ -103,15 +103,15 @@
     <label style="position:absolute;margin:78px 0px 0px 620px;"> <?php if($doctype=="dublicate"){ echo "DUPLICATE"; } if($doctype=="correction"){ echo "REVISED"; } ?> </label><br>
     <?php } ?>
 
-    <label style="position:absolute;margin:260px 0px 0px 145px;"> ALL INDIA </label><br>
-    <label style="position:absolute;margin:295px 0px 0px 390px;"> <?php echo "$cname"; ?> </label><br>
+    <label style="position:absolute;margin:270px 0px 0px 155px;"> ALL INDIA </label><br>
+    <label style="position:absolute;margin:295px 0px 0px 330px;"> <?php echo "$cname"; ?> </label><br>
     <label style="position:absolute;margin:305px 0 0 200px;"> <?php echo "$rroll"; ?> </label><br>
-    <label style="position:absolute;margin:316px 0 0 265px;"> <?php echo "$mname"; ?> </label><br>
-    <label style="position:absolute;margin:325px 0 0 390px;"> <?php echo "$fname"; ?> </label><br>
-    <label style="position:absolute;margin:336px 0 0 220px;"> <?php echo "$dob"; ?> &nbsp;&nbsp; <?php echo strtoupper($dob_text); ?></label><br>
-    <label style="position:absolute;margin:345px 0 0 175px;"> <?php echo "$sch"; ?>&nbsp;-&nbsp;<?php echo "$abbr_name"; ?> </label><br>
+    <label style="position:absolute;margin:316px 0 0 275px;"> <?php echo "$mname"; ?> </label><br>
+    <label style="position:absolute;margin:328px 0 0 400px;"> <?php echo "$fname"; ?> </label><br>
+    <label style="position:absolute;margin:338px 0 0 240px;"> <?php echo "$dob"; ?> &nbsp;&nbsp; <?php echo strtoupper($dob_text); ?></label><br>
+    <label style="position:absolute;margin:350px 0 0 185px;"> <?php echo "$sch"; ?>&nbsp;-&nbsp;<?php echo "$abbr_name"; ?> </label><br>
 
-    <div style="display: grid;grid-template-columns: 60px 260px 62px 52px 60px 150px auto;margin:473px 0px 0px 55px;position:absolute;">
+    <div style="display: grid;grid-template-columns: 60px 260px 62px 52px 60px 150px auto;margin:483px 0px 0px 65px;position:absolute;">
 
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sub1"; ?></div>
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sname1"; ?></div>
@@ -183,8 +183,8 @@
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$gr7"; ?></div>
     </div>
 
-    <label style="position:absolute;margin:760px 0 0 555px;"> <?php echo "$res"; ?> </label><br>
+    <label style="position:absolute;margin:750px 0 0 560px;"> <?php echo "$res"; ?> </label><br>
     <label style="position:absolute;margin:775px 0 0 465px;"> <?php if($cat=="I"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
-    <label style="position:absolute;margin:828px 0 0 145px;"> PATNA </label><br>
-    <label style="position:absolute;margin:833px 0 0 145px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
+    <label style="position:absolute;margin:838px 0 0 155px;"> PATNA </label><br>
+    <label style="position:absolute;margin:843px 0 0 155px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
 </div>

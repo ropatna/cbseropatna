@@ -36,11 +36,17 @@
                 case "migrationx" :
                     include 'includes/migrationx.php';
                     break;
+                case "migrationx2018" :
+                    include 'includes/migrationx.php';
+                    break;
                 case "passingxii" :
                     include 'includes/passingxii.php';
                     break;
                 case "passingx" :
                     include 'includes/passingx.php';
+                    break;
+                case "passingx2018" :
+                    include 'includes/passingx18.php';
                     break;
             }
         }

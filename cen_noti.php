@@ -20,11 +20,11 @@ if(( $_SESSION["cat"] == "admin")){
     }
 
     table td {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 600;
     }
     table th{
-        font-size: 2rem;
+        font-size: 1.3rem;
         font-weight: 800;
         background-color: grey;
     }
@@ -103,6 +103,10 @@ if(( $_SESSION["cat"] == "admin")){
 		$cpr_mob = $rowcen['cpr_mob'];
 		$spr_name = $rowcen['spr_name'];
 		$sp_mob = $rowcen['sp_mob'];
+		$xroll_f = $rowcen['xroll_f'];
+		$xroll_t = $rowcen['xroll_t'];
+		$xiiroll_f = $rowcen['xiiroll_f'];
+		$xiiroll_t = $rowcen['xiiroll_t'];
         $count = "SELECT SUM(noc10),SUM(noc12),SUM(noc10)+SUM(noc12) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
         $runcount = mysqli_query($conn,$count);
         $rowcount = mysqli_fetch_array($runcount);
@@ -118,7 +122,7 @@ if(( $_SESSION["cat"] == "admin")){
                 <th style="background-color: gray; width:150px;text-align:left;"> <?php echo "$censchstat"; ?> </th>
                 <th style="background-color: gray; width:150px;text-align:left;"> <?php echo "$cen_no"; ?> <br> <?php echo "$centdist"; ?> </th>
                 <th style="background-color: gray; width:150px;text-align:left;"> ( <?php echo "$ncen_sch_no"; ?> ) </th>
-                <th style="background-color: gray;width:700px;text-align:left;"> <?php echo "$cabbr_name"; ?> <br> CPR NAME: <?php echo "$cpr_name"; ?> <br> CPR CONTACT: <?php echo "$cpr_mob"; ?> </th>
+                <th style="background-color: gray;width:400px;text-align:left;"> <?php echo "$cabbr_name"; ?> <br> CPR NAME: <?php echo "$cpr_name"; ?> <br> CPR CONTACT: <?php echo "$cpr_mob"; ?> </th>
                 <th style="background-color: gray;width:80px;text-align:left;"> X<sup>th</sup> <br> <?php echo "$cnt1020"; ?> <br> Total: </th>
                 <th style="background-color: gray;width:80px;text-align:left;"> XII<sup>th</sup> <br> <?php echo "$cnt1220"; ?> <br> <?php echo "$tot2020"; ?> </th>
             </tr>
