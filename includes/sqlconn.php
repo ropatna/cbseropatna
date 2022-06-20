@@ -272,7 +272,7 @@
         $schtype = $row['schtype'];
         $admid = $row['admid'];
         $month = $row['month'];
-        if($ryear!="2019"){
+        if($ryear!="2019" && $ryear!="2018"){
         $rslt = $row['rslt'];
         $rmk = $row['rmk'];
         $daterev = $row['daterev'];

@@ -24,6 +24,9 @@
                 case "marksheetxii" :
                     include "includes/marksheetxii.php";
                     break;
+                case "marksheetxii2018" :
+                    include "includes/marksheetxii18.php";
+                    break;
                 case "marksheetx2018" :
                     include "includes/marksheetx18.php";
                     break;
@@ -31,6 +34,9 @@
                     include "includes/marksheetx.php";
                     break;
                 case "migrationxii" :
+                    include 'includes/migrationxii.php';
+                    break;
+                case "migrationxii2018" :
                     include 'includes/migrationxii.php';
                     break;
                 case "migrationx" :
@@ -41,6 +47,9 @@
                     break;
                 case "passingxii" :
                     include 'includes/passingxii.php';
+                    break;
+                case "passingxii2018" :
+                    include 'includes/passingxii18.php';
                     break;
                 case "passingx" :
                     include 'includes/passingx.php';

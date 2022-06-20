@@ -36,7 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-header">
             <center><span class="text-light bg-dark" style="font-size:20px;">Issued Result</span></center>
             <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
-            <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019"){ echo $revised; }?></b></span>
+            <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019" && $ryear!="2018"){ echo $revised; }?></b></span>
         </div>
         <form id="post" class="navbar-form navbar-left" style="width:100%;padding:5px;" method="post" action="index.php?mmsection" <?php if($f==0){echo "hidden";} ?>>
             <table>
@@ -523,7 +523,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-header">
             <center><span class="text-light bg-dark" style="font-size:20px;">Declared Result</span></center>
             <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
-            <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019"){ echo $revised; }?></b></span>
+            <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019" && $ryear!="2018"){ echo $revised; }?></b></span>
         </div>
         <form class="navbar-form navbar-left" style="width:100%;padding:5px;" method="post" action="index.php?mmsection" id="insertdata">
             <table>
