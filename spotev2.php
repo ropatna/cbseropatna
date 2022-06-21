@@ -125,6 +125,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     'Sh. Jyoti Prasad',
                     'Sh. Shambhu kant roy',
                     'Sh. Aditya Kumar, SO',
+                    'Sh. Jagadish',
                     'Sh. Rajesh Kumar, Sup.',
                     'Sh. Manoj Kumar Singh, Sup.',
                     'Sh. Prabhat Kumar Singh, Sup.',
