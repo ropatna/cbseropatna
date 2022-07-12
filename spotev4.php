@@ -64,6 +64,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <option value="received" <?php if($shasearch_in=="received") { echo "selected"; } ?>> Received </option>
             <option value="lbm" <?php if($shasearch_in=="lbm") { echo "selected"; } ?>> Manjhi Ji </option>
             <?php $stafflist = [
+                    'NOT KNOWN',
                     'Sh. Shambhu Prasad, SO',
                     'Sh. V. Lambiakliyan, SO',
                     'Sh. Ramanuj Prasad, SO',
@@ -72,6 +73,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     'Sh. Jyoti Prasad',
                     'Sh. Shambhu kant roy',
                     'Sh. Aditya Kumar, SO',
+                    'Sh. Jagadish',
                     'Sh. Rajesh Kumar, Sup.',
                     'Sh. Manoj Kumar Singh, Sup.',
                     'Sh. Prabhat Kumar Singh, Sup.',

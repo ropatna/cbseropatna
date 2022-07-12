@@ -25,6 +25,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
         margin-left: 220px;
         padding: 1px 16px;
         height: auto;
+        width: auto;
     }
 
     .navbar-form {
@@ -33,11 +34,22 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
     table td {
     font-size: 1rem;
     font-weight: 600;
-}
+    }
     table th{
         font-size: 1.3rem;
         font-weight: 800;
         background-color: grey;
+    }
+    @media screen and (min-width: 1000px) {
+        table td {
+    font-size: 1.8rem;
+    font-weight: 600;
+    }
+    table th{
+        font-size: 2rem;
+        font-weight: 800;
+        background-color: grey;
+    }
     }
 </style>
 <div class="content" id="prn">
@@ -87,7 +99,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
         </b> </span>
          <input class="btn blue-gradient animated slideInLeft" type="button" onclick="printDiv('prn')" value="Print!" style="font-size:12px;padding:5px">
     <div class="table">
-        <table class="table" id="sch">
+        <table class="table table-hover table-responsive" id="sch">
             <thead>
                 <tr>
                     <th>sch_no</th>

@@ -117,6 +117,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <select name="staff" id="staff_name" class="dropdown">
                 <option disabled selected> -Select- </option>
                 <?php $stafflist = [
+                    'NOT KNOWN',
                     'Sh. Shambhu Prasad, SO',
                     'Sh. V. Lambiakliyan, SO',
                     'Sh. Ramanuj Prasad, SO',
