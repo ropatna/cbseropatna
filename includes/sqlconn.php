@@ -152,7 +152,7 @@
         $c_stream = $row2['stream'];
     }
         if($rclass=="x"){
-            $c_pf7 = $row2['pf7'];
+            $c_pf7 = "";
             $c_gr7 = $row2['gr7'];
             $c_mrk73 = $row2['mrk73'];
             $c_mrk72 = $row2['mrk72'];
@@ -174,12 +174,12 @@
     $c_sex = $row2['sex'];
     $c_hand = $row2['hand'];
     $c_scst = $row2['scst'];
-    $c_pf1 = $row2['pf1'];
-    $c_pf2 = $row2['pf2'];
-    $c_pf3 = $row2['pf3'];
-    $c_pf4 = $row2['pf4'];
-    $c_pf5 = $row2['pf5'];
-    $c_pf6 = $row2['pf6'];
+    $c_pf1 = "";
+    $c_pf2 = "";
+    $c_pf3 = "";
+    $c_pf4 = "";
+    $c_pf5 = "";
+    $c_pf6 = "";
     $c_tmrk = $row2['tmrk'];
     $c_comptt = $row2['comptt'];
     $c_res = $row2['res'];
