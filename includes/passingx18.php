@@ -80,6 +80,9 @@
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub3==null || trim($gr3)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname3"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub4==null || trim($gr4)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname4"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub5==null || trim($gr5)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname5"; ?></div>
+        <div style="padding: 10px;font-size: 13px;text-align: left;"></div>
+        <div style="padding-top: 15px;padding-left: 10px;font-size: 14px;text-align: left;" <?php if(($sub6==null || trim($gr6)=="E") && ($sub7==null || trim($gr7)=="E")){echo "hidden";}?>><?php echo "ADDITIONAL SUBJECT"; ?></div>
+        <div style="padding: 10px;font-size: 13px;text-align: left;"></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub6==null || trim($gr6)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname6"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub7==null || trim($gr7)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname7"; ?></div>
     </div>
