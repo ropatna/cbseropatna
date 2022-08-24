@@ -101,7 +101,7 @@ if(isset($_POST['printch'])){
                <td class="tg-0pky"><?php echo $staffn; ?></td>
                <td class="tg-0pky" style="padding-left:90px"> Signature: _______________ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dated: _______________</td>
             </tr>
-            </tbody>
+            </tbody> 
             </table>
             <label style="position:absolute;margin:920px 0px 0px 530px;font-weight:800;font-size:17px;"> Asstt. Secretary (Conf.) </label>
             <label style="position:absolute;margin:950px 0px 0px 0px;font-weight:800;font-size:17px;"> Received above confidential sealed Bags for Evaluation advance as above in cover. </label>
