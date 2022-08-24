@@ -62,41 +62,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <option value="dstat" <?php if($shasearch_in=="dstat") { echo "selected"; } ?>> Dispatch Date (YYYY-MM-DD)</option>
             <option value="pending" <?php if($shasearch_in=="pending") { echo "selected"; } ?>> Pending </option>
             <option value="received" <?php if($shasearch_in=="received") { echo "selected"; } ?>> Received </option>
-            <option value="lbm" <?php if($shasearch_in=="lbm") { echo "selected"; } ?>> Manjhi Ji </option>
-            <?php $stafflist = [
-                    'NOT KNOWN',
-                    'Sh. Shambhu Prasad, SO',
-                    'Sh. V. Lambiakliyan, SO',
-                    'Sh. Ramanuj Prasad, SO',
-                    'Sh. Guru Dutt Rohilla',
-                    'Sh. Andeep Kumar',
-                    'Sh. Jyoti Prasad',
-                    'Sh. Shambhu kant roy',
-                    'Sh. Aditya Kumar, SO',
-                    'Sh. Jagadish',
-                    'Sh. Rajesh Kumar, Sup.',
-                    'Sh. Manoj Kumar Singh, Sup.',
-                    'Sh. Prabhat Kumar Singh, Sup.',
-                    'Md. Fazal Imam, Sup.',
-                    'Sh. Pankaj Gupta, PA',
-                    'Sh. Chhote Lal, Sup.',
-                    'Sh. Vatan Kumar, Sup.',
-                    'Sh. Pankaj, Accountant',
-                    'Sh. Umesh Sharma, SA',
-                    'Sh. Niraj Kumar, SA',
-                    'Sh. Dharmendra Kumar, SA',
-                    'Sh. Jitendra Kumar, SA',
-                    'Sh. Chandan Kumar, SA',
-                    'Smt. Nidhi Kumari, SA',
-                    'Sh. Amarnath Jha, SA',
-                    'Sh. Sachin Kumar, SA',
-                    'Sh. Sanjeev Kumar Sinha, SA',
-                    'Sh. Lal Bihari Manjhi, MTS',
-                    'Sh. Puran Bahadur, MTS'
-                    ];
-                    foreach ($stafflist as $list) { ?>
-                    <option value="<?php echo $list; ?>" <?php if($shasearch_in==$list) { echo "selected"; } ?>> <?php echo $list; ?> </option>
-                <?php } ?>
             <option disabled>---------------------------</option>
             <option value="all" <?php if($shasearch_in=="all") { echo "selected"; } ?>>Show All </option>
         </select>

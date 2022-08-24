@@ -154,6 +154,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <input type="hidden" name="heno" value="<?php echo $heno; ?>">
             <input type="hidden" name="heabbr_name" value="<?php echo str_replace("'","","$heabbr_name"); ?>">
             <input type="hidden" name="hename" value="<?php echo $hename; ?>">
+            <input type="hidden" name="he_sch" value="<?php echo $he_sch; ?>">
             <input type="hidden" name="hemobile" value="<?php echo $hemobile; ?>">
             <input type="hidden" name="hedist" value="<?php echo $hedist; ?>">
             <input type="hidden" name="hesub" value="<?php echo $hesub; ?>">
@@ -166,9 +167,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <input type="hidden" name="hesubname" value="<?php echo $hesubname; ?>">
             <input type="hidden" name="cnsname" value="<?php echo $cnsname; ?>">
             <input type="hidden" name="cnsmobile" value="<?php echo $cnsmobile; ?>">
+            <input type="hidden" name="cnsstate" value="<?php echo $cnsstate; ?>">
+            <input type="hidden" name="cnsadd1" value="<?php echo $cnsadd1; ?>">
+            <input type="hidden" name="cnsadd2" value="<?php echo $cnsadd2; ?>">
+            <input type="hidden" name="cnsadd3" value="<?php echo $cnsadd3; ?>">
             <br><br><br>
             <input type="button" value="ADD MORE" onclick="add_row()" class="btn blue-gradient animated flipInX">
             <input type="submit" name="submit_row" value="SUBMIT" class="btn blue-gradient animated flipInY">
+            <button class="btn btn-primary" type="submit" name="printch" formaction="includes/print.php" formtarget="_blank"> Print Challan </button>
         </form>
     </div>
 </div>
