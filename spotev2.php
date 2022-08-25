@@ -35,7 +35,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         font-size: 1.4rem;
         font-weight: 800;
     }
-
+    .subm{
+        display: none;
+    }
 </style>
 
 <div class="content">
@@ -48,7 +50,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </div>
     </div>
     <div id="form_div">
-        <form method="post" action="index.php?spotev">
+        <form name="allot" method="post" action="index.php?spotev" onsubmit="return validateForm()">
             <h3 style="color: #0c2b9b"><u>He Details.</u></h3>
             <table align=left>
                 <tr>
@@ -115,7 +117,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </table><br><br>
             <label>Deposited By:</label>
             <select name="staff" id="staff_name" class="dropdown">
-                <option disabled selected> -Select- </option>
+                <option value="selectcard" disabled selected> -Select- </option>
                 <?php $stafflist = [
                     'NOT KNOWN',
                     'Sh. Shambhu Prasad, SO',
@@ -173,8 +175,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <input type="hidden" name="cnsadd3" value="<?php echo $cnsadd3; ?>">
             <br><br><br>
             <input type="button" value="ADD MORE" onclick="add_row()" class="btn blue-gradient animated flipInX">
-            <input type="submit" name="submit_row" value="SUBMIT" class="btn blue-gradient animated flipInY">
-            <button class="btn btn-primary" type="submit" name="printch" formaction="includes/print.php" formtarget="_blank"> Print Challan </button>
+            <input type="submit" name="submit_row" value="SUBMIT" class="btn blue-gradient animated flipInY subm" id="submit">
+            <button class="btn btn-primary" type="submit" name="printch" formaction="includes/print.php" formtarget="_blank" id="chal"> Print Challan </button>
         </form>
     </div>
 </div>
@@ -189,7 +191,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     function delete_row(rowno) {
         $('#' + rowno).remove();
     }
-
+    function validateForm() {
+    let x = document.getElementById("staff_name");
+    var selectedValue = x.options[x.selectedIndex].value;
+    if (selectedValue == "selectcard")
+   {
+    alert("Please select Depositor Name");
+    return false;
+   } else {
+    myFunction();
+   }
+    }
+    function myFunction() {
+    var x = document.getElementById("submit");
+    var y = document.getElementById("chal");
+    x.style.display = "block";
+    y.style.display = "none";
+    }
 </script>
 <style>
     .datepicker {}

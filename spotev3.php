@@ -53,7 +53,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </form>
     </div>
     <?php } elseif(isset($_POST['spothesearch'])){
-        $hespot = mysqli_query($conn,"SELECT * FROM spotev2022m WHERE heno=".$_POST['heno']); ?>
+        $hespot = mysqli_query($conn,"SELECT * FROM spotev2022C WHERE heno=".$_POST['heno']); ?>
     <table class="table table-striped table-bordered table-sm">
         <thead>
             <tr>
@@ -185,7 +185,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $today = date("d/m/Y");
         $receivedby = $_POST['staff'];
         if($option=="yes"){
-            $q1 = mysqli_query($conn,"UPDATE spotev2022m SET rstat='".$today."', receivedby='".$receivedby."' WHERE heno='".$heno."'");
+            $q1 = mysqli_query($conn,"UPDATE spotev2022C SET rstat='".$today."', receivedby='".$receivedby."' WHERE heno='".$heno."'");
         }
         if($q1){
             echo "<script>alert('Bag receive Status Updated..');</script>";

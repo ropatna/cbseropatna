@@ -28,6 +28,17 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
         box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.75);
     }
 </style>
+<script>
+function validateForm() {
+  let x = document.forms["allotb"]["heno"].value;
+  let y = document.forms["allotb"]["bfrom"].value;
+  let z = document.forms["allotb"]["bto"].value;
+  if (x == "" || y==""||z=="") {
+    alert("Can't Submit Blank");
+    return false;
+  }
+}
+</script>
 <div class="content">
      <div class="header" style="height: 50px;">
         <div class="nav_bar">
@@ -39,7 +50,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
     </div>
 
     <div class="box">
-    <form action="index.php?spotev2" method="POST" class="" style="width:100%;padding:5px;">
+    <form name="allotb" action="index.php?spotev2" method="POST" class="" style="width:100%;padding:5px;" onsubmit="return validateForm()">
         <h3>Enter Detail's of HE :</h3><br>
        <label>He Number : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="input-group">
@@ -56,12 +67,11 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
         <label>Bag no. To : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="input-group">
             <div class="input-group-btn">
-               <input type="text" name="bto" value="" class="form-control" style="border-radius:4px;width:345px;">
-                <button class="btn btn-default" type="submit" name="spotsearch" style="border-radius:4px;height:34px;margin-top:0px;">
-                    <i class="glyphicon glyphicon-search"></i>
-                </button>
+               <input type="text" name="bto" value="" class="form-control" style="border-radius:4px;">
+                
             </div>
         </div>
+        <center><button class="btn btn-default" type="submit" name="spotsearch" style="border-radius:4px;height:34px;margin-top:0px;"> Allot Bag </button></center>
     </form>
     </div>
 </div>
