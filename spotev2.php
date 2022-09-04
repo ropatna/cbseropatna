@@ -115,7 +115,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </tr>
                 <?php $bfrom=$bfrom+1; $n=$n+1; } ?>
             </table><br><br>
-            <label>Deposited By:</label>
+            <label>Dispatched By:</label>
             <select name="staff" id="staff_name" class="dropdown">
                 <option value="selectcard" disabled selected> -Select- </option>
                 <?php $stafflist = [
@@ -126,7 +126,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     'Sh. Guru Dutt Rohilla',
                     'Sh. Andeep Kumar',
                     'Sh. Jyoti Prasad',
-                    'Sh. Shambhu kant roy',
+                    'Sh. Shambhu kant roy, PS',
                     'Sh. Aditya Kumar, SO',
                     'Sh. Jagadish',
                     'Sh. Rajesh Kumar, Sup.',
@@ -136,9 +136,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     'Sh. Pankaj Gupta, PA',
                     'Sh. Chhote Lal, Sup.',
                     'Sh. Vatan Kumar, Sup.',
-                    'Sh. Pankaj, Accountant',
-                    'Sh. Umesh Sharma, SA',
-                    'Sh. Niraj Kumar, SA',
+                    'Sh. Umesh Sharma, Sup.',
+                    'Sh. Niraj Kumar, Sup.',
                     'Sh. Dharmendra Kumar, SA',
                     'Sh. Jitendra Kumar, SA',
                     'Sh. Chandan Kumar, SA',

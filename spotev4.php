@@ -116,7 +116,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <tr>
                     <th style="background-color: #d8d8d8;" colspan="2"> <?php echo $vheno; ?><br> <?php echo $vhename; ?><br>Mobile No. : <?php echo $vhemobile; ?> </th>
                     <th style="background-color: #d8d8d8;"> <?php echo $vhesub; ?><br> <?php echo $vhesubname; ?><br> <?php echo $vcnsdist; ?> </th>
-                    <th style="background-color: #d8d8d8;" colspan="2"> <?php echo $vcnssch_no; ?> &nbsp;&nbsp;&nbsp;<?php echo $vcnsname; ?> <br> <?php echo $vcnsabbr_name; ?> <br> Mobile :<?php echo $vcnsmobile; ?> <br>Deposited By: <?php echo $depositby; ?><br><?php if($rstat!=NULL){ ?>Received By: <?php echo $receivedby; }?></th>
+                    <th style="background-color: #d8d8d8;" colspan="2"> <?php echo $vcnssch_no; ?> &nbsp;&nbsp;&nbsp;<?php echo $vcnsname; ?> <br> <?php echo $vcnsabbr_name; ?> <br> Mobile :<?php echo $vcnsmobile; ?> <br>Dispatched By: <?php echo $depositby; ?><br><?php if($rstat!=NULL){ ?>Received By: <?php echo $receivedby; }?></th>
                 </tr>
                 <?php for($i=1;$i<=15;$i++) { if(${"bagno".$i}!="" && ${"nocp".$i}!="" && $dstat!="") { ?>
                 <tr>

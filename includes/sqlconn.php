@@ -152,7 +152,7 @@
         $c_stream = $row2['stream'];
     }
         if($rclass=="x"){
-            $c_pf7 = "";
+            $c_pf7 = $row2['pf7'];
             $c_gr7 = $row2['gr7'];
             $c_mrk73 = $row2['mrk73'];
             $c_mrk72 = $row2['mrk72'];
@@ -174,12 +174,12 @@
     $c_sex = $row2['sex'];
     $c_hand = $row2['hand'];
     $c_scst = $row2['scst'];
-    $c_pf1 = "";
-    $c_pf2 = "";
-    $c_pf3 = "";
-    $c_pf4 = "";
-    $c_pf5 = "";
-    $c_pf6 = "";
+    $c_pf1 = $row2['pf1'];
+    $c_pf2 = $row2['pf2'];
+    $c_pf3 = $row2['pf3'];
+    $c_pf4 = $row2['pf4'];
+    $c_pf5 = $row2['pf5'];
+    $c_pf6 = $row2['pf6'];
     $c_tmrk = $row2['tmrk'];
     $c_comptt = $row2['comptt'];
     $c_res = $row2['res'];
@@ -241,7 +241,7 @@
             $stream = $row['stream'];
         }
         if($rclass=="x"){
-            $pf7 = $row['pf7'];
+            $pf7 = "";
             $gr7 = $row['gr7'];
             $mrk73 = $row['mrk73'];
             $mrk72 = $row['mrk72'];
@@ -255,12 +255,12 @@
         $sex = $row['sex'];
         $hand = $row['hand'];
         $scst = $row['scst'];
-        $pf1 = $row['pf1'];
-        $pf2 = $row['pf2'];
-        $pf3 = $row['pf3'];
-        $pf4 = $row['pf4'];
-        $pf5 = $row['pf5'];
-        $pf6 = $row['pf6'];
+        $pf1 = "";
+        $pf2 = "";
+        $pf3 = "";
+        $pf4 = "";
+        $pf5 = "";
+        $pf6 = "";
         $tmrk = $row['tmrk'];
         $comptt = $row['comptt'];
         $res = $row['res'];
@@ -635,16 +635,24 @@ if(isset($_POST['submit_row']))
     $hesubname = $_POST['hesubname'];
     $cnsdist = $_POST['cnsdist'];
     $staffn = $_POST['staff'];
-    $qry1 = "INSERT INTO spotev2022c (heno,heabbr_name,hename,hemobile,hedist,hesub,heclass,hestate,cns_schno,heemail,cnsabbr_name,hesubname,cnsdist,dstat,depositby,cnsname,cnsmobile) VALUES ('$heno','$heabbr_name','$hename','$hemobile','$hedist','$hesub','$heclass','$hestate','$cnssch_no','$heemail','$cnsabbr_name','$hesubname','$cnsdist',DATE(NOW()),'$staffn','$cnsname','$cnsmobile')";
+    $qry1 = "INSERT INTO spotev2022c (heno,heabbr_name,hename,hemobile,hedist,hesub,heclass,hestate,cns_schno,heemail,cnsabbr_name,hesubname,cnsdist,dstat,depositby,cnsname,cnsmobile";
+    for($i=0;$i<count($bagno);$i++)
+    {
+    if($bagno[$i]!="" && $nocp[$i]!="")
+    {
+        $qry1 .= ",bagno".($i+1).",nocp".($i+1);
+    }
+    }
+    $qry1 .= ") VALUES ('$heno','$heabbr_name','$hename','$hemobile','$hedist','$hesub','$heclass','$hestate','$cnssch_no','$heemail','$cnsabbr_name','$hesubname','$cnsdist',DATE(NOW()),'$staffn','$cnsname','$cnsmobile'";
+    for($i=0;$i<count($bagno);$i++)
+    {
+    if($bagno[$i]!="" && $nocp[$i]!="")
+    {
+        $qry1 .= ",'$bagno[$i]','$nocp[$i]'";
+    }
+    }
+    $qry1 .= ")";
     $r1 = mysqli_query($conn,$qry1);
- for($i=0;$i<count($bagno);$i++)
- {
-  if($bagno[$i]!="" && $nocp[$i]!="")
-  {
-      $querycon = "UPDATE spotev2022c SET bagno".($i+1)."='".$bagno[$i]."',nocp".($i+1)."='".$nocp[$i]."' WHERE heno='".$heno."' AND dstat=DATE(NOW())";
-   $r2 = mysqli_query($conn,$querycon);
-  }
- }
 }
     $shasearch_in = "";
     $shatext = "";
@@ -654,35 +662,6 @@ if(isset($_POST['submit_row']))
     if(isset($_POST['shasearch'])){
         $shatext = $_POST['shatext'];
         $shasearch_in = $_POST['searchsha'];
-        $stafflist = [
-            'Sh. Shambhu Prasad, SO',
-            'Sh. V. Lambiakliyan, SO',
-            'Sh. Ramanuj Prasad, SO',
-            'Sh. Guru Dutt Rohilla',
-            'Sh. Andeep Kumar',
-            'Sh. Jyoti Prasad',
-            'Sh. Shambhu kant roy',
-            'Sh. Aditya Kumar, SO',
-            'Sh. Rajesh Kumar, Sup.',
-            'Sh. Manoj Kumar Singh, Sup.',
-            'Sh. Prabhat Kumar Singh, Sup.',
-            'Md. Fazal Imam, Sup.',
-            'Sh. Pankaj Gupta, PA',
-            'Sh. Chhote Lal, Sup.',
-            'Sh. Vatan Kumar, Sup.',
-            'Sh. Pankaj, Accountant',
-            'Sh. Umesh Sharma, SA',
-            'Sh. Niraj Kumar, SA',
-            'Sh. Dharmendra Kumar, SA',
-            'Sh. Jitendra Kumar, SA',
-            'Sh. Chandan Kumar, SA',
-            'Smt. Nidhi Kumari, SA',
-            'Sh. Amarnath Jha, SA',
-            'Sh. Sachin Kumar, SA',
-            'Sh. Sanjeev Kumar Sinha, SA',
-            'Sh. Lal Bihari Manjhi, MTS',
-            'Sh. Puran Bahadur, MTS'
-            ];
         switch($shasearch_in){
             case "dstat" :
                 $qrysha .= " WHERE ".$shasearch_in."='".$shatext."'";
