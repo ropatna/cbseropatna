@@ -148,6 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <option value="mm" <?php if($cat=="mm") { echo "selected"; } ?>> MM Section </option>
                     <option value="exam" <?php if($cat=="exam") { echo "selected"; } ?>> Exam Section </option>
                     <option value="ab" <?php if($cat=="ab") { echo "selected"; } ?>> AB Cell </option>
+                    <option value="rti" <?php if($cat=="rti") { echo "selected"; } ?>> RTI Legal </option>
                 </select>
                 <span class="help-block"><?php echo $cat_err; ?></span>
             </div>

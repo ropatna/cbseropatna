@@ -8,47 +8,48 @@
     if(isset($_POST['schoolsearch'])){
         $search_in = $_POST['searchfor'];
         $searchtext = trim($_POST['searchtext']);
-        $schsession_in = $_POST['schsession'];
+        $year = "2023";
         switch($search_in){
             case "sch_no" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 break;
             case "affno" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
                 break;
             case "abbr_name" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
                 break;
             case "distt" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 break;
             case "state" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 break;
             case "add" :
                 $queryCondition .= " WHERE add1 LIKE '" . $searchtext . "%' OR add2 LIKE '" . $searchtext . "%' OR add3 LIKE '" . $searchtext . "%' OR add4 LIKE '" . $searchtext . "%' OR add5 LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE add1 LIKE '" . $searchtext . "%' OR add2 LIKE '" . $searchtext . "%' OR add3 LIKE '" . $searchtext . "%' OR add4 LIKE '" . $searchtext . "%' OR add5 LIKE '" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE add1 LIKE '" . $searchtext . "%' OR add2 LIKE '" . $searchtext . "%' OR add3 LIKE '" . $searchtext . "%' OR add4 LIKE '" . $searchtext . "%' OR add5 LIKE '" . $searchtext . "%'";
                 break;
             case "pin" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 break;
             case "status" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 break;
             case "all" :
                 $searchtext = "";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2);
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year;
                 break;
         }
-        $sql = "SELECT * FROM schoolmaster".substr($schsession_in,0,2).substr($schsession_in,5,2)." " . $queryCondition;
+        $sql = "SELECT * FROM schoolmaster".$year." " . $queryCondition;
         $result = mysqli_query($conn,$sql);
+        $row_update = mysqli_fetch_array(mysqli_query($conn,"SELECT DISTINCT upd_date FROM schoolmaster".$year));
     }
 /* *****************************************************LOC & Registration tab ********************************************************* */
     $session_in = "";
