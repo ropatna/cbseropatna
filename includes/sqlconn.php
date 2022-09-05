@@ -18,10 +18,6 @@
                 $queryCondition .= " WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
                 $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
                 break;
-            case "abbr_name" :
-                $queryCondition .= " WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '%" . $searchtext . "%'";
-                break;
             case "distt" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
@@ -31,8 +27,8 @@
                 $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
                 break;
             case "add" :
-                $queryCondition .= " WHERE add1 LIKE '" . $searchtext . "%' OR add2 LIKE '" . $searchtext . "%' OR add3 LIKE '" . $searchtext . "%' OR add4 LIKE '" . $searchtext . "%' OR add5 LIKE '" . $searchtext . "%'";
-                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE add1 LIKE '" . $searchtext . "%' OR add2 LIKE '" . $searchtext . "%' OR add3 LIKE '" . $searchtext . "%' OR add4 LIKE '" . $searchtext . "%' OR add5 LIKE '" . $searchtext . "%'";
+                $queryCondition .= " WHERE add1 LIKE '%" . $searchtext . "%' OR add2 LIKE '%" . $searchtext . "%' OR add3 LIKE '%" . $searchtext . "%' OR add4 LIKE '%" . $searchtext . "%' OR add5 LIKE '%" . $searchtext . "%'";
+                $sch_count = "SELECT COUNT(sch_no) FROM schoolmaster".$year."  WHERE add1 LIKE '%" . $searchtext . "%' OR add2 LIKE '%" . $searchtext . "%' OR add3 LIKE '%" . $searchtext . "%' OR add4 LIKE '%" . $searchtext . "%' OR add5 LIKE '%" . $searchtext . "%'";
                 break;
             case "pin" :
                 $queryCondition .= " WHERE " . $search_in . " LIKE '" . $searchtext . "%'";
