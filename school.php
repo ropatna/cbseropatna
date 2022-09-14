@@ -5,7 +5,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")||( $_SESSION["cat"] == "rti")){
+if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")||( $_SESSION["cat"] == "rti")||( $_SESSION["cat"] == "exam")){
 ?>
 <script>
         function printDiv(divName) {

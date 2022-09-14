@@ -84,13 +84,19 @@
         $doctype = $_POST['dtype'];
         $ryear = $_POST['resultyear'];
         $rclass = $_POST['resultclass'];
-        $rexamtype = $_POST['rexamtype'];
+        $rexamtype = "c";
         $rollno = $_POST['rollno'];
-        $sql1 = "SELECT * FROM r".$rclass.$ryear.$rexamtype." WHERE rroll='".$rollno."'";
+        $sql1 = "SELECT * FROM r".$rclass.$ryear."c WHERE rroll='".$rollno."'";
         $result1 = mysqli_query($conn,$sql1);
+        $row = mysqli_fetch_array($result1);
+        if($row==null){
+            $sql1 = "SELECT * FROM r".$rclass.$ryear."m WHERE rroll='".$rollno."'";
+            $result1 = mysqli_query($conn,$sql1);
+            $row = mysqli_fetch_array($result1);
+            $rexamtype = "m";
+        }
         $sql2 = "SELECT * FROM r".$rclass." WHERE rroll='".$rollno."' AND session='".$ryear."' AND rexamtype='".$rexamtype."'";
         $result2 = mysqli_query($conn,$sql2);
-        $row = mysqli_fetch_array($result1);
         $row2 = mysqli_fetch_array($result2);
         if($row2==null){$f=0;}else{$f=1;}
     if($f==1){
