@@ -19,39 +19,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")||( $_SESSION["cat
      document.body.innerHTML = originalContents;
 }
     </script>
-<style>
-    div.content {
-        margin-top: -480px;
-        margin-left: 220px;
-        padding: 1px 16px;
-        height: auto;
-        width: auto;
-    }
 
-    .navbar-form {
-        border-radius: 8px;
-    }
-    table td {
-    font-size: 1rem;
-    font-weight: 600;
-    }
-    table th{
-        font-size: 1.3rem;
-        font-weight: 800;
-        background-color: grey;
-    }
-    @media screen and (min-width: 1000px) {
-        table td {
-    font-size: 1.8rem;
-    font-weight: 600;
-    }
-    table th{
-        font-size: 2rem;
-        font-weight: 800;
-        background-color: grey;
-    }
-    }
-</style>
 <div class="content" id="prn">
     <form action="index.php?school" id="frm" method="POST" class="navbar-form navbar-left navbar-inverse" style="width:100%;padding:5px;">
         <span class="text-light bg-dark"> Filter On : </span>
