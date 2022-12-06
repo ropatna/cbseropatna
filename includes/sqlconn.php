@@ -86,6 +86,7 @@
         $rclass = $_POST['resultclass'];
         $rexamtype = "c";
         $rollno = $_POST['rollno'];
+        $row=null;
         if($ryear=="2021"){
         $sql1 = "SELECT * FROM r".$rclass.$ryear."MIX WHERE rroll='".$rollno."'";
         $result1 = mysqli_query($conn,$sql1);
@@ -93,10 +94,13 @@
         $rexamtype = "r";
         }
         if($row==null){
-        $sql1 = "SELECT * FROM r".$rclass.$ryear."c WHERE rroll='".$rollno."'";
-        $result1 = mysqli_query($conn,$sql1);
-        $row = mysqli_fetch_array($result1);
-        $rexamtype = "c";
+            if($ryear=="2019" || $ryear=="2018"){
+            }else{
+                $sql1 = "SELECT * FROM r".$rclass.$ryear."c WHERE rroll='".$rollno."'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row = mysqli_fetch_array($result1);
+                $rexamtype = "c";
+            }
         if($row==null){
             $sql1 = "SELECT * FROM r".$rclass.$ryear."m WHERE rroll='".$rollno."'";
             $result1 = mysqli_query($conn,$sql1);
