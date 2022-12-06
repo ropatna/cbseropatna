@@ -110,8 +110,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <?php if(isset($_GET['mmsection'])){ include 'mmsection.php'; } ?>
     <?php if(isset($_GET['mmsection2'])){ include 'mmsection2.php'; } ?>
     <?php if(isset($_GET['exmrepo'])){ include 'exmrepo.php'; } ?>
-    <?php if(isset($_GET['examsection'])){ include 'examsection.php'; } ?>
-    <?php if(isset($_GET['exammigx'])){ include 'exammigx.php'; } ?>
+    <?php if(isset($_GET['examsection'])){ include 'examcorr.php'; } ?>
     <?php if(isset($_GET['cen_noti'])){ include 'cen_noti.php'; } ?>
     <?php if(isset($_GET['stats'])){ include 'stats.php'; } ?>
     <?php if(isset($_GET['sub'])){ include 'sub.php'; } ?>

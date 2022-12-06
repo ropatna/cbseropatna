@@ -101,7 +101,7 @@
     <label style="position:absolute;margin:370px 0 0 300px;"> <?php echo "$fname"; ?> </label><br>
     <label style="position:absolute;margin:395px 0 0 175px;"> <?php echo "$sch"; ?>&nbsp;-&nbsp;<?php echo "$abbr_name"; ?> </label><br>
 
-    <div style="display: grid;grid-template-columns: 60px 255px 60px 60px 60px 150px auto;margin:520px 0px 0px 60px;position:absolute;">
+    <div style="display: grid;grid-template-columns: 60px 255px 60px 60px 60px 150px auto;margin:510px 0px 0px 60px;position:absolute;">
 
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sub1"; ?></div>
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sname1"; ?></div>

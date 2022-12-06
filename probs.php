@@ -118,4 +118,5 @@ $(document).ready(function () {
 </div>
 <?php }else{
         header("location: noaccess.php");
+        exit();
     }?>

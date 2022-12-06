@@ -35,7 +35,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div class="f1" <?php if($f==0){echo "hidden";} ?>>
         <div class="form-header">
             <center><span class="text-light bg-dark" style="font-size:20px;">Issued Result</span></center>
-            <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
+            <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; if($rexamtype=="r")$exm="MERGED"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
             <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019" && $ryear!="2018"){ echo $revised; }?></b></span>
         </div>
         <form id="post" class="navbar-form navbar-left" style="width:100%;padding:5px;" method="post" action="index.php?mmsection" <?php if($f==0){echo "hidden";} ?>>
@@ -66,7 +66,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><label> School : </label></td>
                     <td><input type="text" name="sch" value="<?php echo "$c_sch"; ?>" class="inp1" <?php if($c_sch!=$sch){?>id="changed" <?php } ?>><label> <?php
                     $schmaster = "schoolmaster".$ryear;
-                    $school2 = "SELECT * FROM ".$schmaster." WHERE sch_no=".$c_sch." OR nsch_no=".$c_sch;
+                    $school2 = "SELECT * FROM ".$schmaster." WHERE sch_no=".$c_sch;
                     $run_school2 = mysqli_query($conn,$school2);
                     $row_school2 = mysqli_fetch_array($run_school2);
                     $c_abbr_name = $row_school2['abbr_name'];
@@ -113,7 +113,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr1" value="<?php echo "$c_gr1"; ?>" class="inp1" <?php if($c_gr1!=$gr1){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub1==null){ if($c_cat!="C"){?>
+                <?php if($c_sub1==null){ if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="sub1" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname1" value="" class="inp1"></td>
@@ -152,7 +152,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr2" value="<?php echo "$c_gr2"; ?>" class="inp1" <?php if($c_gr2!=$gr2){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub2==null){ if($c_cat!="C"){?>
+                <?php if($c_sub2==null){ if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="sub2" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname2" value="" class="inp1"></td>
@@ -170,7 +170,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="mrk21" value="" class="inp1"></td>
                     <td><input type="text" name="mrk22" value="" class="inp1"></td>
                     <td><input type="hidden" name="mrk23" value="" class="inp1"></td>
-                    <td><input type="text" name="pf1" value="" class="inp1"></td>
+                    <td><input type="text" name="pf2" value="" class="inp1"></td>
                     <td><input type="hidden" name="mrk2text" value="" class="inp1"></td>
                     <td><input type="text" name="gr2" value="" class="inp1"></td>
                 </tr>
@@ -191,7 +191,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr3" value="<?php echo "$c_gr3"; ?>" class="inp1" <?php if($c_gr3!=$gr3){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub3==null){ if($c_cat!="C"){?>
+                <?php if($c_sub3==null){ if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="sub3" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname3" value="" class="inp1"></td>
@@ -230,7 +230,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr4" value="<?php echo "$c_gr4"; ?>" class="inp1" <?php if($c_gr4!=$gr4){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub4==null){ if($c_cat!="C"){?>
+                <?php if($c_sub4==null){ if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="sub4" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname4" value="" class="inp1"></td>
@@ -271,7 +271,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr5" value="<?php echo "$c_gr5"; ?>" class="inp1" <?php if($c_gr5!=$gr5){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub5==null){ if($c_cat!="C"){ ?>
+                <?php if($c_sub5==null){ if($c_cat!="C" && $c_cat!="I"){ ?>
                 <tr>
                     <td><input type="hidden" name="sub5" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname5" value="" class="inp1"></td>
@@ -310,7 +310,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr6" value="<?php echo "$c_gr6"; ?>" class="inp1" <?php if($c_gr6!=$gr6){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub6==null){if($c_cat!="C"){ ?>
+                <?php if($c_sub6==null){if($c_cat!="C" && $c_cat!="I"){ ?>
                 <tr>
                     <td><input type="hidden" name="sub6" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname6" value="" class="inp1"></td>
@@ -349,7 +349,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr7" value="<?php echo "$c_gr7"; ?>" class="inp1" <?php if($c_gr7!=$gr7){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub7==null){ if($c_cat!="C"){ ?>
+                <?php if($c_sub7==null){ if($c_cat!="C" && $c_cat!="I"){ ?>
                 <tr>
                     <td><input type="hidden" name="sub7" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname7" value="" class="inp1"></td>
@@ -383,7 +383,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td></td>
                     <td><input type="text" name="igr1" value="<?php echo "$c_igr1"; ?>" class="inp1" <?php if($c_igr1!=$igr1){?>id="changed" <?php } ?>></td>
                 </tr>
-                <?php }else{if($c_cat!="C"){?>
+                <?php }else{if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="isub1" value="" class="inp1"></td>
                     <td><input type="hidden" name="isname1" value="" class="inp1"></td>
@@ -412,7 +412,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td></td>
                     <td><input type="text" name="igr2" value="<?php echo "$c_igr2"; ?>" class="inp1" <?php if($c_igr2!=$igr2){?>id="changed" <?php } ?>></td>
                 </tr>
-                <?php }else{if($c_cat!="C"){?>
+                <?php }else{if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="isub2" value="" class="inp1"></td>
                     <td><input type="hidden" name="isname2" value="" class="inp1"></td>
@@ -441,7 +441,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td></td>
                     <td><input type="text" name="igr3" value="<?php echo "$c_igr3"; ?>" class="inp1" <?php if($c_igr3!=$igr3){?>id="changed" <?php } ?>></td>
                 </tr>
-                <?php }else{if($c_cat!="C"){?>
+                <?php }else{if($c_cat!="C" && $c_cat!="I"){?>
                 <tr>
                     <td><input type="hidden" name="isub3" value="" class="inp1"></td>
                     <td><input type="hidden" name="isname3" value="" class="inp1"></td>
@@ -522,7 +522,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div class="f2">
         <div class="form-header">
             <center><span class="text-light bg-dark" style="font-size:20px;">Declared Result</span></center>
-            <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
+            <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; if($rexamtype=="r")$exm="MERGED"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
             <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019" && $ryear!="2018"){ echo $revised; }?></b></span>
         </div>
         <form class="navbar-form navbar-left" style="width:100%;padding:5px;" method="post" action="index.php?mmsection" id="insertdata">
@@ -553,8 +553,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><label> School : </label></td>
                     <td><input type="text" name="sch" value="<?php echo "$sch"; ?>" class="inp1">
                         <label> <?php
-                    $schmaster = "schoolmaster".$ryear;
-                    $school = "SELECT * FROM ".$schmaster." WHERE sch_no=".$sch." OR nsch_no=".$sch;
+                    $schmaster = "schoolmaster2023";
+                    $school = "SELECT * FROM ".$schmaster." WHERE sch_no='".$sch."'";
                     $run_school = mysqli_query($conn,$school);
                     $row_school = mysqli_fetch_array($run_school);
                     $abbr_name = $row_school['abbr_name'];

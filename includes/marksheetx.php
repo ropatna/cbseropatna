@@ -185,12 +185,107 @@
     </div>
 
     <label style="position:absolute;margin:780px 0 0 555px;"> <?php echo "$res"; ?> </label><br>
-    <label style="position:absolute;margin:795px 0 0 465px;"> <?php if($cat=="I"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
+    <label style="position:absolute;margin:795px 0 0 465px;"> <?php if($cat=="I" && $res=="XXXX"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
     <label style="position:absolute;margin:835px 0 0 150px;"> PATNA </label><br>
     <label style="position:absolute;margin:840px 0 0 150px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
 </div>
-<?php } else { ?>
+<?php } elseif ($ryear=="2022") { ?>
 <div class="page">
+    <?php if($sch=="99999"){ ?>
+    <label style="position:absolute;margin:25px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
+    <label style="position:absolute;margin:75px 0px 0px 620px;"> <?php echo "         ";  ?> </label><br>
+    <?php } else { ?>
+    <label style="position:absolute;margin:70px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
+    <label style="position:absolute;margin:75px 0px 0px 620px;"> <?php if($doctype=="dublicate"){ echo "DUPLICATE"; } if($doctype=="correction"){ echo "REVISED"; } ?> </label><br>
+    <?php } ?>
+
+    <label style="position:absolute;margin:255px 0px 0px 145px;"> ALL INDIA </label><br>
+    <label style="position:absolute;margin:285px 0px 0px 265px;"> <?php echo "$cname"; ?> </label><br>
+    <label style="position:absolute;margin:305px 0 0 200px;"> <?php echo "$rroll"; ?> </label><br>
+    <label style="position:absolute;margin:320px 0 0 265px;"> <?php echo "$mname"; ?> </label><br>
+    <label style="position:absolute;margin:345px 0 0 265px;"> <?php echo "$fname"; ?> </label><br>
+    <label style="position:absolute;margin:375px 0 0 220px;"> <?php echo "$dob"; ?> &nbsp;&nbsp; <?php echo strtoupper($dob_text); ?></label><br>
+    <label style="position:absolute;margin:400px 0 0 175px;"> <?php echo "$sch"; ?>&nbsp;-&nbsp;<?php echo "$abbr_name"; ?> </label><br>
+
+    <div style="display: grid;grid-template-columns: 60px 260px 62px 52px 60px 150px auto;margin:520px 0px 0px 55px;position:absolute;">
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sub1"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sname1"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$mrk11"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$mrk12"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$mrk13"; ?>&nbsp;<?php echo "$pf1"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$mrk1text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$gr1"; ?></div>
+
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$sub2"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$sname2"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$mrk21"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$mrk22"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$mrk23"; ?>&nbsp;<?php echo "$pf2"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$mrk2text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub2==null){echo "hidden";} ?>><?php echo "$gr2"; ?></div>
+
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$sub3"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$sname3"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$mrk31"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$mrk32"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$mrk33"; ?>&nbsp;<?php echo "$pf3"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$mrk3text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub3==null){echo "hidden";} ?>><?php echo "$gr3"; ?></div>
+
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$sub4"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$sname4"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$mrk41"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$mrk42"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$mrk43"; ?>&nbsp;<?php echo "$pf4"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$mrk4text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub4==null){echo "hidden";} ?>><?php echo "$gr4"; ?></div>
+
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$sub5"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$sname5"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$mrk51"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$mrk52"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$mrk53"; ?>&nbsp;<?php echo "$pf5"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$mrk5text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub5==null){echo "hidden";} ?>><?php echo "$gr5"; ?></div>
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>> <p style="margin-bottom:0;padding-bottom:0;">ADDITIONAL SUBJECT</p> </div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null && $sub7==null){echo "hidden";} ?>></div>
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$sub6"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$sname6"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$mrk61"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$mrk62"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$mrk63"; ?>&nbsp;<?php echo "$pf6"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$mrk6text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub6==null){echo "hidden";} ?>><?php echo "$gr6"; ?></div>
+
+
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$sub7"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$sname7"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$mrk71"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$mrk72"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$mrk73"; ?>&nbsp;<?php echo "$pf7"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$mrk7text"; ?></div>
+        <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$gr7"; ?></div>
+    </div>
+
+    <label style="position:absolute;margin:780px 0 0 555px;"> <?php echo "$res"; ?> </label><br>
+    <label style="position:absolute;margin:795px 0 0 465px;"> <?php if($cat=="I" && $res=="XXXX"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
+    <label style="position:absolute;margin:828px 0 0 145px;"> PATNA </label><br>
+    <label style="position:absolute;margin:833px 0 0 145px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
+</div>
+<?php } else{ ?>
+    <div class="page">
     <?php if($sch=="99999"){ ?>
     <label style="position:absolute;margin:25px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
     <label style="position:absolute;margin:75px 0px 0px 620px;"> <?php echo "         ";  ?> </label><br>
@@ -280,7 +375,7 @@
     </div>
 
     <label style="position:absolute;margin:760px 0 0 555px;"> <?php echo "$res"; ?> </label><br>
-    <label style="position:absolute;margin:775px 0 0 465px;"> <?php if($cat=="I"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
+    <label style="position:absolute;margin:775px 0 0 465px;"> <?php if($cat=="I" && $res=="XXXX"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
     <label style="position:absolute;margin:828px 0 0 145px;"> PATNA </label><br>
     <label style="position:absolute;margin:833px 0 0 145px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
 </div>

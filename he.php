@@ -282,4 +282,5 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
 </div>
 <?php }else{
         header("location: noaccess.php");
+        exit();
     }?>

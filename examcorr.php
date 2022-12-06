@@ -3,9 +3,9 @@
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
-    exit;
+    exit();
 }
-if( $_SESSION["cat"] == "ab" || $_SESSION["cat"] == "exam" || $_SESSION["cat"] == "admin"){
+if($_SESSION["cat"] == "exam" || $_SESSION["cat"] == "admin"){
 ?>
 <script>
         function printDiv(divName) {
