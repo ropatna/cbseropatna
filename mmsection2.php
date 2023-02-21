@@ -113,7 +113,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr1" value="<?php echo "$c_gr1"; ?>" class="inp1" <?php if($c_gr1!=$gr1){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub1==null){ if($c_cat!="C" && $c_cat!="I"){?>
+                <?php if($c_sub1==null){ if($c_cat!="C" && $c_cat!="I"  && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="sub1" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname1" value="" class="inp1"></td>
@@ -152,7 +152,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr2" value="<?php echo "$c_gr2"; ?>" class="inp1" <?php if($c_gr2!=$gr2){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub2==null){ if($c_cat!="C" && $c_cat!="I"){?>
+                <?php if($c_sub2==null){ if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="sub2" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname2" value="" class="inp1"></td>
@@ -191,7 +191,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr3" value="<?php echo "$c_gr3"; ?>" class="inp1" <?php if($c_gr3!=$gr3){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub3==null){ if($c_cat!="C" && $c_cat!="I"){?>
+                <?php if($c_sub3==null){ if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="sub3" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname3" value="" class="inp1"></td>
@@ -230,7 +230,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr4" value="<?php echo "$c_gr4"; ?>" class="inp1" <?php if($c_gr4!=$gr4){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub4==null){ if($c_cat!="C" && $c_cat!="I"){?>
+                <?php if($c_sub4==null){ if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="sub4" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname4" value="" class="inp1"></td>
@@ -271,7 +271,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr5" value="<?php echo "$c_gr5"; ?>" class="inp1" <?php if($c_gr5!=$gr5){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub5==null){ if($c_cat!="C" && $c_cat!="I"){ ?>
+                <?php if($c_sub5==null){ if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){ ?>
                 <tr>
                     <td><input type="hidden" name="sub5" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname5" value="" class="inp1"></td>
@@ -302,15 +302,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td>
                         <input type="text" name="mrk62" value="<?php if(trim($c_mrk62)=="XXX" || trim($c_mrk62)=="AB"){ echo "$c_mrk62";}else{echo sprintf('%03d',$c_mrk62);} ?>" class="inp1" <?php if($c_mrk62!=$mrk62){ if(($c_mrk62==null||$c_mrk62=="XXX")&&($mrk62==null||$mrk62=="XXX")){}else{?>id="changed" <?php } }?>></td>
                     <td>
-                        <?php if($c_mrk62=="XXX"){$total = $c_mrk61;}else {$total = intval($c_mrk61) + intval($c_mrk62);} ?>
-                        <input type="text" name="mrk63" value="<?php if(trim($total)!="AB"){echo sprintf('%03d',$total);}else{echo "$total";} ?>" class="inp1">
+                        <?php if($c_mrk62=="XXX" || trim($c_mrk62)=="AB"){$total = $c_mrk61;}else {$total = intval($c_mrk61) + intval($c_mrk62);} ?>
+                        <input type="text" name="mrk63" value="<?php if(trim($total)!="AB"){echo sprintf('%03d',$total);}else{echo " ";} ?>" class="inp1">
                     </td>
                     <td><input type="text" name="pf6" value="<?php echo $c_pf6; ?>" class="inp1" <?php if($c_pf6!=$pf6){?>id="changed" <?php } ?>></td>
                     <td><label> <?php if(trim($total)!="AB"){include 'includes/mrkt63c.php';if($f==1 && $total!=="AB"){$mrk6text = mrkt63c($total); echo strtoupper("$mrk6text");} }else{$mrk6text="";}?></label><input type="hidden" name="mrk6text" value="<?php echo strtoupper("$mrk6text"); ?>"></td>
                     <td><input type="text" name="gr6" value="<?php echo "$c_gr6"; ?>" class="inp1" <?php if($c_gr6!=$gr6){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub6==null){if($c_cat!="C" && $c_cat!="I"){ ?>
+                <?php if($c_sub6==null){if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){ ?>
                 <tr>
                     <td><input type="hidden" name="sub6" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname6" value="" class="inp1"></td>
@@ -349,7 +349,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td><input type="text" name="gr7" value="<?php echo "$c_gr7"; ?>" class="inp1" <?php if($c_gr7!=$gr7){?>id="changed" <?php } ?>></td>
                 </tr>
                 <?php }  ?>
-                <?php if($c_sub7==null){ if($c_cat!="C" && $c_cat!="I"){ ?>
+                <?php if($c_sub7==null){ if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){ ?>
                 <tr>
                     <td><input type="hidden" name="sub7" value="" class="inp1"></td>
                     <td><input type="hidden" name="sname7" value="" class="inp1"></td>
@@ -383,7 +383,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td></td>
                     <td><input type="text" name="igr1" value="<?php echo "$c_igr1"; ?>" class="inp1" <?php if($c_igr1!=$igr1){?>id="changed" <?php } ?>></td>
                 </tr>
-                <?php }else{if($c_cat!="C" && $c_cat!="I"){?>
+                <?php }else{if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="isub1" value="" class="inp1"></td>
                     <td><input type="hidden" name="isname1" value="" class="inp1"></td>
@@ -412,7 +412,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td></td>
                     <td><input type="text" name="igr2" value="<?php echo "$c_igr2"; ?>" class="inp1" <?php if($c_igr2!=$igr2){?>id="changed" <?php } ?>></td>
                 </tr>
-                <?php }else{if($c_cat!="C" && $c_cat!="I"){?>
+                <?php }else{if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="isub2" value="" class="inp1"></td>
                     <td><input type="hidden" name="isname2" value="" class="inp1"></td>
@@ -441,7 +441,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td></td>
                     <td><input type="text" name="igr3" value="<?php echo "$c_igr3"; ?>" class="inp1" <?php if($c_igr3!=$igr3){?>id="changed" <?php } ?>></td>
                 </tr>
-                <?php }else{if($c_cat!="C" && $c_cat!="I"){?>
+                <?php }else{if($c_cat!="C" && $c_cat!="I" && $c_cat!="S" && $c_cat!="T"){?>
                 <tr>
                     <td><input type="hidden" name="isub3" value="" class="inp1"></td>
                     <td><input type="hidden" name="isname3" value="" class="inp1"></td>
@@ -723,8 +723,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <input type="text" name="mrk62" value="<?php echo "$mrk62"; ?>" class="inp1">
                     </td>
                     <td>
-                        <?php if($mrk62=="XXX"){$total = $mrk61;}else {$total = intval($mrk61) + intval($mrk62);} ?>
-                        <input type="text" name="mrk63" value="<?php if(trim($total)!="AB"){echo sprintf('%03d',$total);}else{echo "$total";} ?>" class="inp1">
+                        <?php if($mrk62=="XXX" && $mrk62=="AB"){$total = $mrk61;}else {$total = intval($mrk61) + intval($mrk62);} ?>
+                        <input type="text" name="mrk63" value="<?php if(trim($mrk61)!="AB"){echo sprintf('%03d',$total);}else{echo "$total";} ?>" class="inp1">
                     </td>
                     <td><label> <?php if(trim($mrk61)!="AB"){include 'includes/mrkt63.php'; $mrk6text = mrkt63($total); echo strtoupper("$mrk6text");} ?></label></td>
                     <td><input type="text" name="gr6" value="<?php echo "$gr6"; ?>" class="inp1"></td>
