@@ -46,6 +46,7 @@ if(( $_SESSION["cat"] == "admin")){
             <option value="schschtype" <?php if($ssearch_in=="schschtype") { echo "selected"; } ?>>School Type</option>
             <option value="self" <?php if($ssearch_in=="self") { echo "selected"; } ?>>Self Centers</option>
             <option value="private" <?php if($ssearch_in=="private") { echo "selected"; } ?>>Private Candidates</option>
+            <option value="centlist" <?php if($ssearch_in=="centlist") {echo "selected";} ?>>Center List</option>
             <option disabled>---------------------------</option>
             <option value="all" <?php if($ssearch_in=="all") { echo "selected"; } ?>>Show All Centers</option>
         </select>
@@ -55,6 +56,7 @@ if(( $_SESSION["cat"] == "admin")){
             <option value="2019" <?php if($year=="2019") { echo "selected"; } ?>> 2019 </option>
             <option value="2020" <?php if($year=="2020") { echo "selected"; } ?>> 2020 </option>
             <option value="2022" <?php if($year=="2022") { echo "selected"; } ?>> 2022 </option>
+            <option value="2023" <?php if($year=="2023") { echo "selected"; } ?>> 2023 </option>
         </select>
         <label class="text-light bg-dark">Exam Type : </label>
         <select name="examtype" id="examtype" class="dropdown">
@@ -77,7 +79,7 @@ if(( $_SESSION["cat"] == "admin")){
         <h2>CENTER NOTIFICATION FOR <?php echo "$year"; ?> <?php if($examtype=="m"){echo "MAIN";}if($examtype=="c"){echo "COMPART";} ?> EXAM</h2>
     </center><br><br>
     <span style="float:right;margin-top:-30px;color:red"> <b>Updated On :
-            <?php echo "25-08-2022"; ?>
+            <?php echo "15-03-2023"; ?>
         </b> </span>
     <span style="float:left;margin-top:-30px;color:red;"> <b>Centers Found:
             <?php
@@ -86,34 +88,72 @@ if(( $_SESSION["cat"] == "admin")){
     $counter = $row_cencount['COUNT(DISTINCT `cen_no`)'];
     echo "$counter"; ?>
         </b> </span>
-    <?php
-    while($rowcen = mysqli_fetch_array($runcen)){
-		$cen_no = $rowcen['cen_no'];
-        $ncen_sch_no = $rowcen['csch_no'];
-        $sch_no = $rowcen['sch_no'];
-		$cabbr_name = $rowcen['cabbr_name'];
-		$sabbr_name = $rowcen['abbr_name'];
-		$centdist = $rowcen['cdistt'];
-		$schdist = $rowcen['distt'];
-		$schstate = $rowcen['state'];
-		$censchstat = $rowcen['cstate'];
-        $noc1020 = $rowcen['noc10'];
-		$noc1220 = $rowcen['noc12'];
-		$cpr_name = $rowcen['cpr_name'];
-		$cpr_mob = $rowcen['cpr_mob'];
-		$spr_name = $rowcen['spr_name'];
-		$sp_mob = $rowcen['sp_mob'];
-		$xroll_f = $rowcen['xroll_f'];
-		$xroll_t = $rowcen['xroll_t'];
-		$xiiroll_f = $rowcen['xiiroll_f'];
-		$xiiroll_t = $rowcen['xiiroll_t'];
-        $count = "SELECT SUM(noc10),SUM(noc12),SUM(noc10)+SUM(noc12) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
-        $runcount = mysqli_query($conn,$count);
-        $rowcount = mysqli_fetch_array($runcount);
-        $cnt1020 = $rowcount['SUM(noc10)'];
-        $cnt1220 = $rowcount['SUM(noc12)'];
-        $tot2020 = $rowcount['SUM(noc10)+SUM(noc12)'];
-    ?>
+        <?php if($ssearch_in=="centlist"){ ?>
+        <table class="table table-bordered">
+            <tr>
+                <th>Centre No.</th>
+                <th>Centre School No.</th>
+                <th>Centre School Name</th>
+                <th>Centre District</th>
+                <th>Centre State</th>
+                <th>CS Name</th>
+                <th>CS CONTACT</th>
+                <th>TOT10</th>
+                <th>TOT12</th>
+            </tr>
+            <?php while($rowcen = mysqli_fetch_array($runcen)){
+                $cen_no = $rowcen['cen_no'];
+                $ncen_sch_no = $rowcen['csch_no'];
+                $cabbr_name = $rowcen['cabbr_name'];
+                $centdist = $rowcen['cdistt'];
+                $censchstat = $rowcen['cstate'];
+                $cpr_name = $rowcen['cpr_name'];
+                $cpr_mob = $rowcen['cpr_mob'];
+                $count = "SELECT SUM(noc10),SUM(noc12) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
+                $runcount = mysqli_query($conn,$count);
+                $rowcount = mysqli_fetch_array($runcount);
+                $cnt1020 = $rowcount['SUM(noc10)'];
+                $cnt1220 = $rowcount['SUM(noc12)']; ?>
+                <tr>
+                    <td><?php echo "$cen_no"; ?></td>
+                    <td><?php echo "$ncen_sch_no"; ?></td>
+                    <td><?php echo "$cabbr_name"; ?></td>
+                    <td><?php echo "$centdist"; ?></td>
+                    <td><?php echo "$censchstat"; ?></td>
+                    <td><?php echo "$cpr_name"; ?></td>
+                    <td><?php echo "$cpr_mob"; ?></td>
+                    <td><?php echo "$cnt1020"; ?></td>
+                    <td><?php echo "$cnt1220"; ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+        <?php } else{ 
+            while($rowcen = mysqli_fetch_array($runcen)){
+            $cen_no = $rowcen['cen_no'];
+            $ncen_sch_no = $rowcen['csch_no'];
+            $sch_no = $rowcen['sch_no'];
+            $cabbr_name = $rowcen['cabbr_name'];
+            $sabbr_name = $rowcen['abbr_name'];
+            $centdist = $rowcen['cdistt'];
+            $schdist = $rowcen['distt'];
+            $schstate = $rowcen['state'];
+            $censchstat = $rowcen['cstate'];
+            $noc1020 = $rowcen['noc10'];
+            $noc1220 = $rowcen['noc12'];
+            $cpr_name = $rowcen['cpr_name'];
+            $cpr_mob = $rowcen['cpr_mob'];
+            $spr_name = $rowcen['spr_name'];
+            $sp_mob = $rowcen['sp_mob'];
+            $xroll_f = $rowcen['xroll_f'];
+            $xroll_t = $rowcen['xroll_t'];
+            $xiiroll_f = $rowcen['xiiroll_f'];
+            $xiiroll_t = $rowcen['xiiroll_t'];
+            $count = "SELECT SUM(noc10),SUM(noc12),SUM(noc10)+SUM(noc12) FROM center".$year.$examtype." WHERE cen_no='".$cen_no."'";
+            $runcount = mysqli_query($conn,$count);
+            $rowcount = mysqli_fetch_array($runcount);
+            $cnt1020 = $rowcount['SUM(noc10)'];
+            $cnt1220 = $rowcount['SUM(noc12)'];
+            $tot2020 = $rowcount['SUM(noc10)+SUM(noc12)'];?>
     <center>
         <table>
             <?php
@@ -146,7 +186,7 @@ if(( $_SESSION["cat"] == "admin")){
             <?php } ?>
         </table>
     </center>
-    <?php } ?>
+    <?php }} ?>
     <?php } ?>
 </div>
 <?php }else{

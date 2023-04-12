@@ -47,16 +47,25 @@ if( $_SESSION["cat"] == "ab" || $_SESSION["cat"] == "exam" || $_SESSION["cat"] =
             <option disabled selected> -Select- </option>
             <option value="date" <?php if($dcssearch=="date") { echo "selected"; } ?>>Exam Date</option>
             <option value="cen_no" <?php if($dcssearch=="cen_no") { echo "selected"; } ?>>Centre No.</option>
+            <option value="sub" <?php if($dcssearch=="sub") { echo "selected"; } ?>>Subject</option>
             <option value="csch_no" <?php if($dcssearch=="csch_no") { echo "selected"; } ?>>Centre's School No.</option>
             <option value="cdistt" <?php if($dcssearch=="cdistt") { echo "selected"; } ?>>Centre's District</option>
             <option disabled>---------------------------</option>
             <option value="all" <?php if($dcssearch=="all") { echo "selected"; } ?>>Show All Records</option>
         </select>
-        <span class="text-light bg-dark"> Session : </span>
+        <label class="text-light bg-dark"> Year : </label>
         <select name="dcsyear" id="dcsyear" class="dropdown">
-            <option disabled selected> -Select Session- </option>
-            <option value="2021" <?php if($dcsyear=="2021") { echo "selected"; } ?>> 2021 </option>
+            <option disabled selected> -Select Year- </option>
+            <option value="2019" <?php if($dcsyear=="2019") { echo "selected"; } ?>> 2019 </option>
+            <option value="2020" <?php if($dcsyear=="2020") { echo "selected"; } ?>> 2020 </option>
             <option value="2022" <?php if($dcsyear=="2022") { echo "selected"; } ?>> 2022 </option>
+            <option value="2023" <?php if($dcsyear=="2023") { echo "selected"; } ?>> 2023 </option>
+        </select>
+        <label class="text-light bg-dark">Exam Type : </label>
+        <select name="examtype" id="examtype" class="dropdown">
+            <option disabled selected> -Select Exam Type- </option>
+            <option value="m" <?php if($examtype=="m") { echo "selected"; } ?> selected> Main </option>
+            <option value="c" <?php if($examtype=="c") { echo "selected"; } ?>> Compart </option>
         </select>
         <div class="input-group">
             <input type="text" name="dcstext" placeholder="Enter" value="<?php echo "$dcstext"; ?>" class="form-control">

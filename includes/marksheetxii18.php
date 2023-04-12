@@ -171,7 +171,7 @@
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($isub3==null){echo "hidden";} ?>><?php echo "$igr3"; ?></div>
     </div>
     <label style="position:absolute;margin:695px 0 0 555px;"> <?php echo "$res"; ?> </label><br>
-    <label style="position:absolute;margin:710px 0 0 465px;"> <?php if($cat=="I"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
+    <label style="position:absolute;margin:710px 0 0 465px;"> <?php if($cat=="I"){echo "APPEARED FOR IMPROVEMENT";}elseif($cat=="A"){echo "APPEARED FOR ADDITIONAL SUBJECT";} else {echo "     ";} ?> </label><br>
     <label style="position:absolute;margin:890px 0 0 150px;"> PATNA </label><br>
     <label style="position:absolute;margin:895px 0 0 150px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
 </div>

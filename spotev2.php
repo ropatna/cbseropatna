@@ -35,9 +35,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         font-size: 1.4rem;
         font-weight: 800;
     }
-    .subm{
-        display: none;
-    }
 </style>
 
 <div class="content">
@@ -59,7 +56,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <th> HE NAME </th>
-                    <td>: <?php echo $hename; ?> </td>
+                    <td>: <?php echo str_replace("'","","$hename"); ?> </td>
                 </tr>
                 <tr>
                     <th> HE CLASS </th>
@@ -115,46 +112,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </tr>
                 <?php $bfrom=$bfrom+1; $n=$n+1; } ?>
             </table><br><br>
-            <label>Dispatched By:</label>
-            <select name="staff" id="staff_name" class="dropdown">
-                <option value="selectcard" disabled selected> -Select- </option>
-                <?php $stafflist = [
-                    'NOT KNOWN',
-                    'Sh. Shambhu Prasad, SO',
-                    'Sh. V. Lambiakliyan, SO',
-                    'Sh. Ramanuj Prasad, SO',
-                    'Sh. Guru Dutt Rohilla',
-                    'Sh. Andeep Kumar',
-                    'Sh. Jyoti Prasad',
-                    'Sh. Shambhu kant roy, PS',
-                    'Sh. Aditya Kumar, SO',
-                    'Sh. Jagadish',
-                    'Sh. Rajesh Kumar, Sup.',
-                    'Sh. Manoj Kumar Singh, Sup.',
-                    'Sh. Prabhat Kumar Singh, Sup.',
-                    'Md. Fazal Imam, Sup.',
-                    'Sh. Pankaj Gupta, PA',
-                    'Sh. Chhote Lal, Sup.',
-                    'Sh. Vatan Kumar, Sup.',
-                    'Sh. Umesh Sharma, Sup.',
-                    'Sh. Niraj Kumar, Sup.',
-                    'Sh. Dharmendra Kumar, SA',
-                    'Sh. Jitendra Kumar, SA',
-                    'Sh. Chandan Kumar, SA',
-                    'Smt. Nidhi Kumari, SA',
-                    'Sh. Amarnath Jha, SA',
-                    'Sh. Sachin Kumar, SA',
-                    'Sh. Sanjeev Kumar Sinha, SA',
-                    'Sh. Lal Bihari Manjhi, MTS',
-                    'Sh. Puran Bahadur, MTS'
-                    ];
-                    foreach ($stafflist as $list) { ?>
-                <option value="<?php echo $list; ?>" <?php if($staff==$list) { echo "selected"; } ?>> <?php echo $list; ?> </option>
-                <?php } ?>
-            </select>
+            
             <input type="hidden" name="heno" value="<?php echo $heno; ?>">
             <input type="hidden" name="heabbr_name" value="<?php echo str_replace("'","","$heabbr_name"); ?>">
-            <input type="hidden" name="hename" value="<?php echo $hename; ?>">
+            <input type="hidden" name="hename" value="<?php echo str_replace("'","","$hename"); ?>">
             <input type="hidden" name="he_sch" value="<?php echo $he_sch; ?>">
             <input type="hidden" name="hemobile" value="<?php echo $hemobile; ?>">
             <input type="hidden" name="hedist" value="<?php echo $hedist; ?>">
@@ -166,7 +127,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <input type="hidden" name="cnsdist" value="<?php echo $cnsdist; ?>">
             <input type="hidden" name="cnsabbr_name" value="<?php echo str_replace("'","","$cnsabbr_name"); ?>">
             <input type="hidden" name="hesubname" value="<?php echo $hesubname; ?>">
-            <input type="hidden" name="cnsname" value="<?php echo $cnsname; ?>">
+            <input type="hidden" name="cnsname" value="<?php echo str_replace("'","","$cnsname"); ?>">
             <input type="hidden" name="cnsmobile" value="<?php echo $cnsmobile; ?>">
             <input type="hidden" name="cnsstate" value="<?php echo $cnsstate; ?>">
             <input type="hidden" name="cnsadd1" value="<?php echo $cnsadd1; ?>">
@@ -175,7 +136,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <br><br><br>
             <input type="button" value="ADD MORE" onclick="add_row()" class="btn blue-gradient animated flipInX">
             <input type="submit" name="submit_row" value="SUBMIT" class="btn blue-gradient animated flipInY subm" id="submit">
-            <button class="btn btn-primary" type="submit" name="printch" formaction="includes/print.php" formtarget="_blank" id="chal"> Print Challan </button>
+            <!-- <button class="btn btn-primary" type="submit" name="printch" formaction="includes/print.php" formtarget="_blank" id="chal"> Print Challan </button> -->
         </form>
     </div>
 </div>

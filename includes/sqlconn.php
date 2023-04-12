@@ -338,11 +338,29 @@
         $rmigexamtype = $_POST['rmigexamtype'];
     }
     /* *****************************************************Exam Section tab ********************************************************* */
-    $exammigyear = "";
-    $exammigclass = "";
-    $exammigexamtype = "";
-    $roll = "";
-    $align = "";
+    $centext = "";
+	$ssearch_in = "";
+    $queryCon = "";
+    $cen = "";
+    $year = "";
+    $examtype = "";
+    if(isset($_POST['centlistsearch'])){
+        $dcssearch = $_POST['dcssearch'];
+        $dcsyear = $_POST['dcsyear'];
+        $examtype = $_POST['examtype'];
+        #$ssearch_in = $_POST['searchcen'];
+        #$centext = $_POST['centext'];
+        switch($dcssearch){
+            case "centlist" :
+                $queryCon = " group by cen_no";
+                $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE sch_no='99999'";
+                break;
+        }
+        $cen = "SELECT CEN_NO,CSCH_NO,CABBR_NAME,CADD1,CADD2,CADD3,CADD4,CADD5,CPR_NAME,CPR_MOB,SUM(NOC10) as NOC10,SUM(NOC12) as NOC12,CSNAME,CSMOBILE FROM center".$dcsyear.$examtype.$queryCon;
+        #$runcen = mysqli_query($conn,$cen);
+        $dcs = mysqli_query($conn,$cen);
+    }
+
     /* *****************************************************Exam Report tab ********************************************************* */
     $dcssearch="";
     $dcsyear="";
@@ -357,36 +375,41 @@
         switch($dcssearch){
             case "date" :
                 $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
                 break;
             case "cen_no" :
                 $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
+                break;
+            case "sub" :
+                $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
                 break;
             case "csch_no" :
                 $qcn .= "WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m WHERE " . $dcssearch . "='" . $dcstext . "'";
                 break;
             case "cdistt" :
                 $qcn .= "WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
                 break;
             case "key" :
                 $qcn .= "WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m WHERE " . $dcssearch . " LIKE '%" . $dcstext . "%'";
                 break;
             case "all" :
                 $dcstext = "";
-                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."c";
-                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."c";
+                $cen_count = "SELECT COUNT(distinct cen_no) FROM dcs".$dcsyear."m";
+                $tot_count = "SELECT COUNT(*) FROM dcs".$dcsyear."m";
                 break;
         }
-        $dcssql = "SELECT * FROM dcs".$dcsyear."c " . $qcn;
+        $dcssql = "SELECT * FROM dcs".$dcsyear."m " . $qcn;
         $dcs = mysqli_query($conn,$dcssql);
     }
     /* *****************************************************Center Notification tab ********************************************************* */
@@ -446,12 +469,18 @@
                 $queryCon .= " WHERE cen_no IN (SELECT cen_no FROM center".$year.$examtype." WHERE sch_no='99999')";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE sch_no='99999'";
                 break;
+            case "centlist" :
+                $cen = "SELECT DISTINCT cen_no,csch_no,cabbr_name,cdistt,cstate,cpr_name,cpr_mob FROM center".$year.$examtype;
+                $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype;
+                break;
             case "all" :
                 $centext = "";
                 $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype;
                 break;
         }
-        $cen = "SELECT * FROM center".$year.$examtype.$queryCon;
+        if($ssearch_in!="centlist"){
+            $cen = "SELECT * FROM center".$year.$examtype.$queryCon;
+        }
         $runcen = mysqli_query($conn,$cen);
     }
 /* *****************************************************Subjects tab ********************************************************* */
@@ -598,6 +627,35 @@
             $rowcnr = mysqli_fetch_array(mysqli_query($conn,$querycnr));
             $cnr = $rowcnr['COUNT(*)'];
     }
+
+/* *****************************************************Center List Details tab ********************************************************* */
+/*$centext = "";
+$ssearch_in = "";
+$queryCon = "";
+$cen = "";
+$year = "";
+$examtype = "";
+if(isset($_POST['dcsfind'])){
+    $year = $_POST['year'];
+    $examtype = $_POST['examtype'];
+    $ssearch_in = $_POST['searchcen'];
+    $centext = $_POST['centext'];
+    switch($ssearch_in){
+        case "centlist" :
+            //SELECT cen_no,csch_no,cabbr_name,cadd1,cadd2,cadd3,cadd4,cpr_name,cpr_mob, sum(noc10),sum(noc12) FROM `center2023m` group by cen_no,csch_no,cabbr_name;
+            $queryCon =  " SELECT cen_no,csch_no,cabbr_name,cadd1,cadd2,cadd3,cadd4,cpr_name,cpr_mob, sum(noc10),sum(noc12) FROM center.".$year.$examtype." group by cen_no,csch_no,cabbr_name";
+            //$queryCon .= " WHERE cen_no IN (SELECT distinct cen_no FROM center".$year.$examtype.")";
+            $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype." WHERE sch_no='99999'";
+            break;
+        case "all" :
+            $centext = "";
+            $cencount = "SELECT COUNT(DISTINCT `cen_no`) FROM center".$year.$examtype;
+            break;
+    }
+    //$cen = "SELECT * FROM center".$year.$examtype.$queryCon;
+    $runcen = mysqli_query($conn,$queryCon);
+}
+
 /* *****************************************************Spot Evaluation Status tab ********************************************************* */
     $evhe = "";
     $heno = "";
@@ -606,7 +664,7 @@
         $heno = $_POST['heno'];
         $bfrom = $_POST['bfrom'];
         $bto = $_POST['bto'];
-        $evhe = "SELECT * FROM he2022c WHERE heno='".$heno."'";
+        $evhe = "SELECT * FROM he2023m WHERE heno='".$heno."'";
         $runspotev = mysqli_query($conn,$evhe);
         $rowspotev = mysqli_fetch_array($runspotev);
         $heabbr_name = $rowspotev['abbr_name'];
@@ -628,7 +686,7 @@
         $cnsadd2 = $rowspotev['cnsadd2'];
         $cnsadd3 = $rowspotev['cnsadd3'];
         if($heclass=="10")$class="x"; else $class="xii";
-        $SUB = mysqli_fetch_array(mysqli_query($conn,"SELECT subname FROM sub".$class."2021 WHERE sub='".$hesub."'"));
+        $SUB = mysqli_fetch_array(mysqli_query($conn,"SELECT subname FROM sub".$class."2023 WHERE sub='".$hesub."'"));
         $hesubname = $SUB['subname'];
     }
 if(isset($_POST['submit_row']))
@@ -650,8 +708,7 @@ if(isset($_POST['submit_row']))
     $cnsmobile = $_POST['cnsmobile'];
     $hesubname = $_POST['hesubname'];
     $cnsdist = $_POST['cnsdist'];
-    $staffn = $_POST['staff'];
-    $qry1 = "INSERT INTO spotev2022c (heno,heabbr_name,hename,hemobile,hedist,hesub,heclass,hestate,cns_schno,heemail,cnsabbr_name,hesubname,cnsdist,dstat,depositby,cnsname,cnsmobile";
+    $qry1 = "INSERT INTO spotev2023m (heno,heabbr_name,hename,hemobile,hedist,hesub,heclass,hestate,cns_schno,heemail,cnsabbr_name,hesubname,cnsdist,dstat,cnsname,cnsmobile";
     for($i=0;$i<count($bagno);$i++)
     {
     if($bagno[$i]!="" && $nocp[$i]!="")
@@ -659,7 +716,7 @@ if(isset($_POST['submit_row']))
         $qry1 .= ",bagno".($i+1).",nocp".($i+1);
     }
     }
-    $qry1 .= ") VALUES ('$heno','$heabbr_name','$hename','$hemobile','$hedist','$hesub','$heclass','$hestate','$cnssch_no','$heemail','$cnsabbr_name','$hesubname','$cnsdist',DATE(NOW()),'$staffn','$cnsname','$cnsmobile'";
+    $qry1 .= ") VALUES ('$heno','$heabbr_name','$hename','$hemobile','$hedist','$hesub','$heclass','$hestate','$cnssch_no','$heemail','$cnsabbr_name','$hesubname','$cnsdist',DATE(NOW()),'$cnsname','$cnsmobile'";
     for($i=0;$i<count($bagno);$i++)
     {
     if($bagno[$i]!="" && $nocp[$i]!="")
@@ -681,32 +738,26 @@ if(isset($_POST['submit_row']))
         switch($shasearch_in){
             case "dstat" :
                 $qrysha .= " WHERE ".$shasearch_in."='".$shatext."'";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022c WHERE ".$shasearch_in."='".$shatext."'";
+                $ctrhe = "SELECT COUNT(*) FROM spotev2023m WHERE ".$shasearch_in."='".$shatext."'";
                 break;
             case "pending" :
                 $qrysha .= " WHERE rstat IS NULL ORDER BY cnsdist,cns_schno,hesub";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022c WHERE rstat IS NULL";
+                $ctrhe = "SELECT COUNT(*) FROM spotev2023m WHERE rstat IS NULL";
                 break;
             case "received" :
                 $qrysha .= " WHERE rstat IS NOT NULL ORDER BY cnsdist,cns_schno,hesub";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022c WHERE rstat IS NOT NULL";
+                $ctrhe = "SELECT COUNT(*) FROM spotev2023m WHERE rstat IS NOT NULL";
                 break;
             case "heno" :
                 $qrysha .= " WHERE ".$shasearch_in."='".$shatext."'";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022c WHERE ".$shasearch_in."='".$shatext."'";
+                $ctrhe = "SELECT COUNT(*) FROM spotev2023m WHERE ".$shasearch_in."='".$shatext."'";
                 break;
-            // foreach ($stafflist as $list){
-            //     case $list :
-            //         $qrysha .= " WHERE receivedby='".$list."' ORDER BY cnsdist,cns_schno,hesub";
-            //         $ctrhe = "SELECT COUNT(*) FROM spotev2022c WHERE receivedby='".$list."'";
-            //         break;
-            // }
             case "all" :
                 $qrysha = " ORDER BY heno";
                 $shatext = "";
-                $ctrhe = "SELECT COUNT(*) FROM spotev2022c";
+                $ctrhe = "SELECT COUNT(*) FROM spotev2023m";
                 break;
         }
     $hectr = mysqli_fetch_array(mysqli_query($conn,$ctrhe));
     }
-    $spotall = mysqli_query($conn,"SELECT * FROM spotev2022c".$qrysha);
+    $spotall = mysqli_query($conn,"SELECT * FROM spotev2023m".$qrysha);

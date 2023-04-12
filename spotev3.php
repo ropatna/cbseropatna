@@ -53,7 +53,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </form>
     </div>
     <?php } elseif(isset($_POST['spothesearch'])){
-        $hespot = mysqli_query($conn,"SELECT * FROM spotev2022C WHERE heno=".$_POST['heno']); ?>
+        $hespot = mysqli_query($conn,"SELECT * FROM spotev2023m WHERE heno=".$_POST['heno']); ?>
     <table class="table table-striped table-bordered table-sm">
         <thead>
             <tr>
@@ -122,7 +122,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <p class="deep-orange-text"><label>Total Number of Bags : <?php echo $nb; ?> </label>
     <label>Total Number of copies : <?php echo $tcopy; ?> </label></p><br>
 
-    <p class="deep-orange-text"><label>Deposited By : <?php echo $depositby; ?> </label></p>
     <p class="deep-orange-text" <?php if($vrstat==NULL){ echo "hidden"; } ?>><label>Received By : <?php echo $rcby; ?> </label></p>
     <form action="index.php?spotev3" method="post" <?php if($vrstat!=NULL){ echo "hidden"; } ?>>
         <label>Recieved Back?</label>
@@ -135,43 +134,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <input class="form-check-input" type="radio" name="options" id="option2" autocomplete="off" checked value="no"> No
             </label>
         </div>
-        <label>Recieved By:</label>
-        <select name="staff" id="staff_name" class="dropdown">
-            <option disabled selected> -Select- </option>
-            <?php $stafflist = [
-                'NOT KNOWN',
-                'Sh. Shambhu Prasad, SO',
-                'Sh. V. Lambiakliyan, SO',
-                'Sh. Ramanuj Prasad, SO',
-                'Sh. Guru Dutt Rohilla',
-                'Sh. Andeep Kumar',
-                'Sh. Jyoti Prasad',
-                'Sh. Shambhu kant roy, PS',
-                'Sh. Aditya Kumar, SO',
-                'Sh. Jagadish',
-                'Sh. Rajesh Kumar, Sup.',
-                'Sh. Manoj Kumar Singh, Sup.',
-                'Sh. Prabhat Kumar Singh, Sup.',
-                'Md. Fazal Imam, Sup.',
-                'Sh. Pankaj Gupta, PA',
-                'Sh. Chhote Lal, Sup.',
-                'Sh. Vatan Kumar, Sup.',
-                'Sh. Umesh Sharma, Sup.',
-                'Sh. Niraj Kumar, Sup.',
-                'Sh. Dharmendra Kumar, SA',
-                'Sh. Jitendra Kumar, SA',
-                'Sh. Chandan Kumar, SA',
-                'Smt. Nidhi Kumari, SA',
-                'Sh. Amarnath Jha, SA',
-                'Sh. Sachin Kumar, SA',
-                'Sh. Sanjeev Kumar Sinha, SA',
-                'Sh. Lal Bihari Manjhi, MTS',
-                'Sh. Puran Bahadur, MTS'
-                ];
-                foreach ($stafflist as $list) { ?>
-            <option value="<?php echo $list; ?>" <?php if($staff==$list) { echo "selected"; } ?>> <?php echo $list; ?> </option>
-            <?php } ?>
-        </select>
+        
         <input type="hidden" name="heno" value="<?php echo $cheno; ?>">
         <input type="submit" name="rstat" value="UPDATE STATUS" class="btn blue-gradient animated flipInY">
     </form>
@@ -182,9 +145,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         $option = $_POST['options'];
         $heno = $_POST['heno'];
         $today = date("d/m/Y");
-        $receivedby = $_POST['staff'];
         if($option=="yes"){
-            $q1 = mysqli_query($conn,"UPDATE spotev2022C SET rstat='".$today."', receivedby='".$receivedby."' WHERE heno='".$heno."'");
+            $q1 = mysqli_query($conn,"UPDATE spotev2023m SET rstat='".$today."' WHERE heno='".$heno."'");
         }
         if($q1){
             echo "<script>alert('Bag receive Status Updated..');</script>";

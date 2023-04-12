@@ -64,6 +64,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
             <option value="2019" <?php if($heyear=="2019") { echo "selected"; } ?>> 2019 </option>
             <option value="2020" <?php if($heyear=="2020") { echo "selected"; } ?>> 2020 </option>
             <option value="2022" <?php if($heyear=="2022") { echo "selected"; } ?>> 2022 </option>
+            <option value="2023" <?php if($heyear=="2023") { echo "selected"; } ?>> 2023 </option>
         </select>
         <label class="text-light bg-dark">Exam Type : </label>
         <select name="heexamtype" id="rexamtype" class="dropdown">
@@ -176,7 +177,7 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
     <input class="btn blue-gradient animated slideInLeft" type="button" onclick="printDiv('prn')" value="Print!" style="font-size:12px;padding:5px">
     <table class="tg">
         <tr>
-            <th class="tg-zaje"> Uid <br> Slno. <br> Heno. <br> Reg.</th>
+            <th class="tg-zaje"> Uid <br> Heno. <br> Reg. <br> </th>
             <th class="tg-zaje"> HE Details </th>
             <th class="tg-zaje"> Sub_10_1 <br> Sub_10_2 <br> Sub_12_1 <br> Sub_12_2 <br> Qualifications</th>
             <th class="tg-zaje"> Exp_10_1 <br> Exp_10_2 <br> Exp_12_1 <br> Exp_12_2 </th>
@@ -187,13 +188,12 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
         </tr>
         <?php while($rowhe = mysqli_fetch_array($runhe)){
             $uid = $rowhe['uid'];
+            $lot = $rowhe['lot'];
             $slno = $rowhe['slno'];
             $sub = $rowhe['sub'];
-            $school = $rowhe['school'];
             $abbr_name = $rowhe['abbr_name'];
             $reg = $rowhe['reg'];
             $sch_no = $rowhe['sch_no'];
-            $oldsch_no = $rowhe['oldsch_no'];
             $name = $rowhe['name'];
             $gen = $rowhe['gen'];
             $post = $rowhe['post'];
@@ -201,7 +201,6 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
             $yoj = $rowhe['yoj'];
             $acad_qual = $rowhe['acad_qual'];
             $prof_qual = $rowhe['prof_qual'];
-            $class = $rowhe['class'];
             $cwsn = $rowhe['cwsn'];
             $comp = $rowhe['comp'];
             $mobile = $rowhe['mobile'];
@@ -224,7 +223,6 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
             $remark = $rowhe['remark'];
             $hedist = $rowhe['hedist'];
             $hestate = $rowhe['hestate'];
-            $exp_12_ch = $rowhe['exp_12_ch'];
             $hesub = $rowhe['hesub'];
             $heclass = $rowhe['heclass'];
             $heno = $rowhe['heno'];
@@ -232,12 +230,14 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
             $cnsabbrnam = $rowhe['cnsabbrnam'];
             $cnsdist = $rowhe['cnsdist'];
             $cnsstate = $rowhe['cnsstate'];
+            $cnsname = $rowhe['cnsname'];
+            $cnsmobile = $rowhe['cnsmobile'];
         ?>
         <tr>
-            <td class="tg-zaje"> <?php echo $uid; ?> <br> <?php echo $slno; ?> <br> <u><?php echo $heno; ?></u> <br> <?php echo $reg; ?><span style="color:red;"> <b>hesub: </b> <br> <?php echo $hesub; ?> </span><br> <?php if($heclass=="10"){ ?><span style="color:red;"><b>heclass: </b> <?php echo $heclass;}else{?></span><span style="color:green;"><b>heclass: </b> <?php echo $heclass;} ?> </span></td>
+            <td class="tg-zaje"> <?php echo $uid; ?> <br> <u><?php echo $heno; ?></u> <br> <?php echo $reg; ?> <br> lot: <?php echo $lot; ?><br><span style="color:red;"> <b>hesub: </b> <?php echo $hesub; ?> </span><br> <?php if($heclass=="10"){ ?><span style="color:red;"><b>heclass: </b> <?php echo $heclass;}else{?></span><span style="color:green;"><b>heclass: </b> <?php echo $heclass;} ?> </span></td>
             <td class="tg-zaje">
                 <b><?php echo $name; ?></b> <br>
-                <?php echo $sch_no; ?> / <?php echo $oldsch_no; ?> <br>
+                <?php echo $sch_no; ?> <br>
                 <?php echo $abbr_name; ?> <br>
                 <b>Gen: </b> <?php echo $gen; ?>&nbsp;&nbsp;&nbsp;
                 <b>Post: </b> <?php echo $post; ?> <br>
@@ -254,8 +254,6 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
             </td>
             <td class="tg-zaje">
                 <?php echo $accountno; ?> <br> <?php echo $ifsccode; ?> <br> <?php echo $bankname; ?> <br> <?php echo $panno; ?> <br><br>
-                <b>Class: </b> <?php echo $class; ?> <br>
-                <b>School: </b> <?php echo $school; ?> <br>
                 <b>Sub: </b> <?php echo $sub; ?> &nbsp;&nbsp;&nbsp;
                 <b>Medium: </b> <?php echo $medium; ?>
             </td>
@@ -264,14 +262,13 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")){
                 <b>Cwsn: </b> <?php echo $cwsn; ?> <br>
                 <b>Comp: </b> <?php echo $comp; ?> <br>
                 <b>Appear10: </b> <?php echo $appear10; ?>&nbsp;&nbsp;&nbsp;
-                <b>Appear12: </b> <?php echo $appear12; ?> <br>
-                <b>Exp_12_ch: </b> <?php echo $exp_12_ch; ?>
+                <b>Appear12: </b> <?php echo $appear12; ?>
             </td>
             <td class="tg-zaje" style="background-color: lightgreen">
-                <span style="color:red;"> <b><?php echo $cnssch_no; ?></b> </span> <br> <?php echo $cnsabbrnam; ?>
+                <span style="color:red;"> <b><?php echo $cnssch_no; ?></b> </span> <br> <?php echo $cnsabbrnam; ?> <br> CNS Name: <?php echo $cnsname; ?>
             </td>
             <td class="tg-zaje" style="background-color: lightgreen">
-                <?php echo $cnsdist; ?> <br> <?php echo $cnsstate; ?>
+                <?php echo $cnsdist; ?> <br> <?php echo $cnsstate; ?><br> CNS Contact: <?php echo $cnsmobile; ?>
             </td>
         </tr>
         <?php } ?>
