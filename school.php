@@ -83,11 +83,11 @@ if(( $_SESSION["cat"] == "admin")||( $_SESSION["cat"] == "ab")||( $_SESSION["cat
     $schcounter = $row_sch_count['COUNT(sch_no)'];
     echo "$schcounter"; ?>
         </b> </span>
-    <span style="float:right;margin-top:0px;color:red"> <b>Updated On :
+    <!-- <span style="float:right;margin-top:0px;color:red"> <b>Updated On :
             <?php
-    $upd_date = $row_update['upd_date'];
-    echo date('d-m-Y', strtotime($upd_date)); ?>
-        </b> </span>
+    //$upd_date = $row_update['upd_date'];
+    //echo date('d-m-Y', strtotime($upd_date)); ?>
+        </b> </span> -->
          <input class="btn blue-gradient animated slideInLeft" type="button" onclick="printDiv('prn')" value="Print!" style="font-size:12px;padding:5px">
     <div class="table">
         <table class="table table-hover table-responsive table-sm" id="sch">

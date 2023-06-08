@@ -94,24 +94,25 @@
         $dob_text = $dob1." ".$dob3;
     }
 ?>
+<?php if($ryear=="2020") { ?>
 <div class="page">
     <?php if($sch=="99999"){ ?>
-    <label style="position:absolute;margin:25px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
-    <label style="position:absolute;margin:65px 0px 0px 620px;"> <?php echo "         ";  ?> </label><br>
+    <label style="position:absolute;margin:65px 0px 0px 615px;"> <?php echo "$iregdno"; ?> </label><br>
+    <label style="position:absolute;margin:70px 0px 0px 615px;"> <?php echo "         ";  ?> </label><br>
     <?php } else { ?>
-    <label style="position:absolute;margin:63px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
-    <label style="position:absolute;margin:68px 0px 0px 620px;"> <?php if($doctype=="dublicate"){ echo "DUPLICATE"; } if($doctype=="correction"){ echo "REVISED"; } ?> </label><br>
+    <label style="position:absolute;margin:65px 0px 0px 615px;"> <?php echo "$iregdno"; ?> </label><br>
+    <label style="position:absolute;margin:70px 0px 0px 615px;"> <?php if($doctype=="dublicate"){ echo "DUPLICATE"; } if($doctype=="correction"){ echo "REVISED"; } ?> </label><br>
     <?php } ?>
 
-    <label style="position:absolute;margin:260px 0px 0px 155px;"> ALL INDIA </label><br>
-    <label style="position:absolute;margin:285px 0px 0px 330px;"> <?php echo "$cname"; ?> </label><br>
-    <label style="position:absolute;margin:295px 0 0 200px;"> <?php echo "$rroll"; ?> </label><br>
-    <label style="position:absolute;margin:306px 0 0 275px;"> <?php echo "$mname"; ?> </label><br>
-    <label style="position:absolute;margin:318px 0 0 400px;"> <?php echo "$fname"; ?> </label><br>
-    <label style="position:absolute;margin:328px 0 0 240px;"> <?php echo "$dob"; ?> &nbsp;&nbsp; <?php echo strtoupper($dob_text); ?></label><br>
-    <label style="position:absolute;margin:340px 0 0 185px;"> <?php echo "$sch"; ?>&nbsp;-&nbsp;<?php echo "$abbr_name"; ?> </label><br>
+    <label style="position:absolute;margin:255px 0px 0px 150px;"> ALL INDIA </label><br>
+    <label style="position:absolute;margin:280px 0px 0px 205px;"> <?php echo "$cname"; ?> </label><br>
+    <label style="position:absolute;margin:300px 0 0 120px;"> <?php echo "$rroll"; ?> </label><br>
+    <label style="position:absolute;margin:320px 0 0 190px;"> <?php echo "$mname"; ?> </label><br>
+    <label style="position:absolute;margin:348px 0 0 235px;"> <?php echo "$fname"; ?> </label><br>
+    <label style="position:absolute;margin:375px 0 0 165px;"> <?php echo "$dob"; ?> &nbsp;&nbsp; <?php echo strtoupper($dob_text); ?></label><br>
+    <label style="position:absolute;margin:400px 0 0 160px;"> <?php echo "$sch"; ?>&nbsp;-&nbsp;<?php echo "$abbr_name"; ?> </label><br>
 
-    <div style="display: grid;grid-template-columns: 60px 260px 62px 52px 60px 150px auto;margin:473px 0px 0px 65px;position:absolute;">
+    <div style="display: grid;grid-template-columns: 60px 260px 62px 52px 60px 145px auto;margin:525px 0px 0px 55px;position:absolute;">
 
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sub1"; ?></div>
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub1==null){echo "hidden";} ?>><?php echo "$sname1"; ?></div>
@@ -183,8 +184,9 @@
         <div style="padding: 5px;font-size: 13px;text-align: left;" <?php if($sub7==null){echo "hidden";} ?>><?php echo "$gr7"; ?></div>
     </div>
 
-    <label style="position:absolute;margin:740px 0 0 560px;"> <?php echo "$res"; ?> </label><br>
-    <label style="position:absolute;margin:765px 0 0 465px;"> <?php if($cat=="I"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
-    <label style="position:absolute;margin:828px 0 0 155px;"> PATNA </label><br>
-    <label style="position:absolute;margin:823px 0 0 155px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
+    <label style="position:absolute;margin:775px 0 0 545px;"> <?php echo "$res"; ?> </label><br>
+    <label style="position:absolute;margin:780px 0 0 465px;"> <?php if($cat=="I" && $res=="XXXX"){echo "APPEARED FOR IMPROVEMENT";}else {echo "     ";} ?> </label><br>
+    <label style="position:absolute;margin:830px 0 0 150px;"> PATNA </label><br>
+    <label style="position:absolute;margin:835px 0 0 150px;"> <?php echo "$dateofdecl"; ?> / <?php echo "$newDateUpd"; ?></label>
 </div>
+<?php } ?>

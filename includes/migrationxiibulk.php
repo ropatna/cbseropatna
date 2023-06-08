@@ -5,7 +5,7 @@
         $fname = $row_rol['fname'];
         $rroll = $row_rol['rroll'];
         $sch = $row_rol['sch'];
-        $abbr_name = $row_rol['abbr_name'];
+        $abbr_name = $row_rol2['abbr_name'];
         $rmigyear = $_POST['rmigyear'];
         $myDate = date('d/m/Y');
         $sex = $row_rol['sex'];
@@ -13,6 +13,7 @@
     }
 ?>
 <div class="page" size="A4">
+    <label style="position:absolute;margin:120px 0px 0px 620px;"> DUPLICATE </label>
     <label style="position:absolute;margin:328px 0 0 253px;"> <?php echo strtoupper("$cname"); ?> </label><br>
     <label style="position:absolute;margin:382px 0 0 164px;"> <?php echo "$rroll"; ?> </label>
     <?php if(strtoupper($sex)=="F"){?>

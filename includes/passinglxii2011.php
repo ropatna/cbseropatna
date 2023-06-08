@@ -1,5 +1,7 @@
+<!-- Left Passing XII 2011 -->
 <?php
     if(isset($_POST['print'])){
+        $ryear = $_POST['ryear'];
         $doctype = $_POST['doctype'];
         $cname = $_POST['cname'];
         $mname = $_POST['mname'];
@@ -13,21 +15,24 @@
         $sub4 = $_POST['sub4'];
         $sub5 = $_POST['sub5'];
         $sub6 = $_POST['sub6'];
-        $sub7 = $_POST['sub7'];
         $gr1 = $_POST['gr1'];
         $gr2 = $_POST['gr2'];
         $gr3 = $_POST['gr3'];
         $gr4 = $_POST['gr4'];
         $gr5 = $_POST['gr5'];
         $gr6 = $_POST['gr6'];
-        $gr7 = $_POST['gr7'];
+        $isub1 = $_POST['isub1'];
+        $isub2 = $_POST['isub2'];
+        $isub3 = $_POST['isub3'];
         $sname1 = $_POST['sname1'];
         $sname2 = $_POST['sname2'];
         $sname3 = $_POST['sname3'];
         $sname4 = $_POST['sname4'];
         $sname5 = $_POST['sname5'];
         $sname6 = $_POST['sname6'];
-        $sname7 = $_POST['sname7'];
+        $isname1 = $_POST['isname1'];
+        $isname2 = $_POST['isname2'];
+        $isname3 = $_POST['isname3'];
         $cent = $_POST['cent'];
         $res = $_POST['res'];
         $regdno = $_POST['regdno'];
@@ -48,33 +53,35 @@
     }
 ?>
 <?php if($res=="PASS") { ?>
-<div class="page">
+<div class="page"> 
     <?php if($sch=="99999"){ ?>
     <label style="position:absolute;margin:30px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
     <label style="position:absolute;margin:80px 0px 0px 620px;"> <?php echo "         ";  ?> </label><br>
     <?php } else { ?>
-    <label style="position:absolute;margin:70px 0px 0px 620px;"> <?php echo "$iregdno"; ?> </label><br>
-    <label style="position:absolute;margin:75px 0px 0px 620px;"> <?php if($doctype=="dublicate"){ echo "DUPLICATE"; } if($doctype=="correction"){ echo "REVISED"; } ?> </label><br>
+    <label style="position:absolute;margin:65px 0px 0px 600px;"> <?php echo "$iregdno"; ?> </label><br>
+    <label style="position:absolute;margin:70px 0px 0px 600px;"> <?php if($doctype=="dublicate"){ echo "DUPLICATE"; } if($doctype=="correction"){ echo "REVISED"; } ?> </label><br>
     <?php } ?>
-    <label style="position:absolute;margin:278px 0px 0px 143px;"> ALL INDIA </label><br>
-    <label style="position:absolute;margin:395px 0px 0px 225px;"> <?php echo "$cname"; ?> </label><br>
-    <label style="position:absolute;margin:410px 0px 0px 200px;"> <?php echo "$rroll"; ?> </label><br>
-    <label style="position:absolute;margin:425px 0px 0px 260px;"> <?php echo "$mname"; ?></label><br>
-    <label style="position:absolute;margin:438px 0px 0px 380px;"> <?php echo "$fname"; ?> </label><br>
-    <label style="position:absolute;margin:515px 0px 0px 150px;"> <?php echo "$sch"; ?> - <?php echo "$abbr_name"; ?> </label><br>
+    <label style="position:absolute;margin:355px 0px 0px 170px;"> ALL INDIA </label><br>
+    <label style="position:absolute;margin:410px 0px 0px 290px;"> <?php echo "$cname"; ?> </label><br>
+    <label style="position:absolute;margin:440px 0px 0px 200px;"> <?php echo "$rroll"; ?> </label><br>
+    <label style="position:absolute;margin:480px 0px 0px 330px;"> <?php echo "$mname"; ?> / <?php echo "$fname"; ?> </label><br>
+    <label style="position:absolute;margin:455px 0px 0px 410px;">  </label><br>
+    <label style="position:absolute;margin:590px 0px 0px 190px;"> <?php echo "$sch"; ?> - <?php echo "$abbr_name"; ?> </label><br>
 
-    <div style="display: grid;grid-template-columns: 330px 330px;margin:595px 0px 0px 110px;position:absolute;">
+    <div style="display: grid;grid-template-columns: 200px 200px 200px;margin:650px 0px 0px 120px;position:absolute;">
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub1==null || trim($gr1)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo $sname1; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub2==null || trim($gr2)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname2"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub3==null || trim($gr3)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname3"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub4==null || trim($gr4)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname4"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub5==null || trim($gr5)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname5"; ?></div>
         <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub6==null || trim($gr6)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname6"; ?></div>
-        <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($sub7==null || trim($gr7)=="E"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$sname7"; ?></div>
+        <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($isub1==null||$isub1=="0"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$isname1"; ?></div>
+        <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($isub2==null||$isub2=="0"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$isname2"; ?></div>
+        <div style="padding: 10px;font-size: 13px;text-align: left;" <?php if($isub3==null||$isub3=="0"){echo "hidden";}else{$sno+=1;} ?>><?php echo $sno; ?>. <?php echo "$isname3"; ?></div>
     </div>
 
 
-    <label style="position:absolute;margin:910px 0px 0px 150px;"> PATNA </label><br>
-    <label style="position:absolute;margin:920px 0px 0px 150px;"> <?php echo "$newDateDecl"; ?> / <?php echo "$newDateUpd"; ?></label>
+    <label style="position:absolute;margin:910px 0px 0px 170px;"> PATNA </label><br>
+    <label style="position:absolute;margin:930px 0px 0px 170px;"> <?php echo "$newDateDecl"; ?> / <?php echo "$newDateUpd"; ?></label>
 </div>
 <?php } ?>

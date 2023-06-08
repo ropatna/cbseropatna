@@ -16,48 +16,14 @@
             $ryear = $_POST['ryear'];
             $prntype = $_POST['prntype'];
             $rclass = $_POST['rclass'];
-            $casetype = $prntype.$rclass;
-            if($ryear=="2018"){
-                $casetype = $prntype.$rclass.$ryear;
+            $filename = $prntype.$rclass.$ryear;
+            $filename2 = $prntype.$rclass;
+            if($prntype!='migration'){
+                include 'includes/'.$filename.'.php';
+            } else {
+                include 'includes/'.$filename2.'.php';
             }
-            switch($casetype){
-                case "marksheetxii" :
-                    include "includes/marksheetxii.php";
-                    break;
-                case "marksheetxii2018" :
-                    include "includes/marksheetxii18.php";
-                    break;
-                case "marksheetx2018" :
-                    include "includes/marksheetx18.php";
-                    break;
-                case "marksheetx" :
-                    include "includes/marksheetx.php";
-                    break;
-                case "migrationxii" :
-                    include 'includes/migrationxii.php';
-                    break;
-                case "migrationxii2018" :
-                    include 'includes/migrationxii.php';
-                    break;
-                case "migrationx" :
-                    include 'includes/migrationx.php';
-                    break;
-                case "migrationx2018" :
-                    include 'includes/migrationx.php';
-                    break;
-                case "passingxii" :
-                    include 'includes/passingxii.php';
-                    break;
-                case "passingxii2018" :
-                    include 'includes/passingxii18.php';
-                    break;
-                case "passingx" :
-                    include 'includes/passingx.php';
-                    break;
-                case "passingx2018" :
-                    include 'includes/passingx18.php';
-                    break;
-            }
+            
         }
         if(isset($_POST['migbulk'])){
             $rmigyear = $_POST['rmigyear'];
@@ -134,7 +100,12 @@
                         $row_rol = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM r".$rmigclass.$rmigyear."c WHERE rroll=".${"rol".($i + 1)}));
                     }
                     $sch_no = $row_rol['sch'];
-                    $row_rol2 = mysqli_fetch_array(mysqli_query($conn,"SELECT abbr_name FROM schoolmaster".$rmigyear." WHERE sch_no=".$sch_no));
+                    $run_rol2 = mysqli_query($conn,"SELECT abbr_name FROM schoolmaster2023 WHERE sch_no=".$sch_no);
+                    $row_rol2 = mysqli_fetch_array($run_rol2);
+                    if($row_rol2==null){
+                        $run_rol2 = mysqli_query($conn,"SELECT abbr_name FROM schoolmaster2021 WHERE nsch_no=".$sch_no);
+                        $row_rol2 = mysqli_fetch_array($run_rol2);
+                    }
                     $data_array = array('Roll No.' => ${"rol".($i + 1)},'Candidate Name' => $row_rol['cname'],'Mother\'s Name' => $row_rol['mname'],'Father\'s Name' => $row_rol['fname'],'DOB' => $row_rol['dob'],'Class' => $rmigclass,'Year' => $rmigyear);
                     $res = $row_rol['res'];
                     if((trim($res)=="PASS")||(trim($res)=="COMPARTMENT")||(trim($res)=="COMP")){

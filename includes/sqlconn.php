@@ -88,25 +88,29 @@
         $rollno = $_POST['rollno'];
         $row=null;
         if($ryear=="2021"){
-        $sql1 = "SELECT * FROM r".$rclass.$ryear."MIX WHERE rroll='".$rollno."'";
+        $sql1 = "SELECT * FROM r".$rclass.$ryear."mix WHERE rroll='".$rollno."'";
         $result1 = mysqli_query($conn,$sql1);
         $row = mysqli_fetch_array($result1);
         $rexamtype = "r";
         }
         if($row==null){
-            if($ryear=="2019" || $ryear=="2018"){
-            }else{
+            if($ryear=="2022" || $ryear=="2020" || $ryear=="2021"){
                 $sql1 = "SELECT * FROM r".$rclass.$ryear."c WHERE rroll='".$rollno."'";
                 $result1 = mysqli_query($conn,$sql1);
                 $row = mysqli_fetch_array($result1);
                 $rexamtype = "c";
+                if($row==null){
+                    $sql1 = "SELECT * FROM r".$rclass.$ryear."m WHERE rroll='".$rollno."'";
+                    $result1 = mysqli_query($conn,$sql1);
+                    $row = mysqli_fetch_array($result1);
+                    $rexamtype = "m";
+                }
+            }else{
+                $sql1 = "SELECT * FROM r".$rclass.$ryear."m WHERE rroll='".$rollno."'";
+                $result1 = mysqli_query($conn,$sql1);
+                $row = mysqli_fetch_array($result1);
+                $rexamtype = "m";
             }
-        if($row==null){
-            $sql1 = "SELECT * FROM r".$rclass.$ryear."m WHERE rroll='".$rollno."'";
-            $result1 = mysqli_query($conn,$sql1);
-            $row = mysqli_fetch_array($result1);
-            $rexamtype = "m";
-        }
         }
         $sql2 = "SELECT * FROM r".$rclass." WHERE rroll='".$rollno."' AND session='".$ryear."' AND rexamtype='".$rexamtype."'";
         $result2 = mysqli_query($conn,$sql2);
@@ -257,7 +261,7 @@
             $stream = $row['stream'];
         }
         if($rclass=="x"){
-            $pf7 = "";
+            $pf7 = $row['pf7'];
             $gr7 = $row['gr7'];
             $mrk73 = $row['mrk73'];
             $mrk72 = $row['mrk72'];
@@ -271,31 +275,50 @@
         $sex = $row['sex'];
         $hand = $row['hand'];
         $scst = $row['scst'];
-        $pf1 = "";
-        $pf2 = "";
-        $pf3 = "";
-        $pf4 = "";
-        $pf5 = "";
-        $pf6 = "";
+        $pf1 = $row['pf1'];
+        $pf2 = $row['pf2'];
+        $pf3 = $row['pf3'];
+        $pf4 = $row['pf4'];
+        $pf5 = $row['pf5'];
+        $pf6 = $row['pf6'];
         $tmrk = $row['tmrk'];
         $comptt = $row['comptt'];
         $res = $row['res'];
         $regdno = $row['regdno'];
         $rlrw = $row['rlrw'];
-        $date_rev = $row['date_rev'];
         $state = $row['state'];
         $cent = $row['cent'];
         $schtype = $row['schtype'];
-        $admid = $row['admid'];
-        $month = $row['month'];
-        if($ryear!="2019" && $ryear!="2018"){
-        $rslt = $row['rslt'];
-        $rmk = $row['rmk'];
-        $daterev = $row['daterev'];
-        $revised = $row['revised'];
+        if($ryear=="2022" || $ryear=="2022"){
+            $rslt = $row['rslt'];
+            $rmk = $row['rmk'];
+            $revised = $row['revised'];
         }
         $resremark = $row['resremark'];
-        $sent = $row['sent'];
+        }
+        for ($i=1; $i <= 6; $i++) { 
+            if(strtoupper(trim(${"pf".$i}))=="P" || strtoupper(trim(${"pf".$i}))=="F" || strtoupper(trim(${"pf".$i}))=="G" || strtoupper(trim(${"pf".$i}))=="A" || strtoupper(trim(${"pf".$i}))=="M" || strtoupper(trim(${"pf".$i}))=="@"){
+                ${"pf".$i}=" ";
+            }
+            if(strtoupper(trim(${"pf".$i}))=="T"){
+                ${"pf".$i}="FT";
+            }
+            if(strtoupper(trim(${"pf".$i}))=="R"){
+                ${"pf".$i}="FP";
+            }
+        }
+        if($rclass=="x"){
+            for ($i=7; $i <= 7; $i++) { 
+                if(strtoupper(trim(${"pf".$i}))=="P" || strtoupper(trim(${"pf".$i}))=="F" || strtoupper(trim(${"pf".$i}))=="G" || strtoupper(trim(${"pf".$i}))=="A" || strtoupper(trim(${"pf".$i}))=="M" || strtoupper(trim(${"pf".$i}))=="@"){
+                    ${"pf".$i}=" ";
+                }
+                if(strtoupper(trim(${"pf".$i}))=="T"){
+                    ${"pf".$i}="FT";
+                }
+                if(strtoupper(trim(${"pf".$i}))=="R"){
+                    ${"pf".$i}="FP";
+                }
+            }
         }
     }
 

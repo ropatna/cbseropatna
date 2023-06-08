@@ -36,7 +36,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-header">
             <center><span class="text-light bg-dark" style="font-size:20px;">Issued Result</span></center>
             <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; if($rexamtype=="r")$exm="MERGED"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
-            <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019" && $ryear!="2018"){ echo $revised; }?></b></span>
         </div>
         <form id="post" class="navbar-form navbar-left" style="width:100%;padding:5px;" method="post" action="index.php?mmsection" <?php if($f==0){echo "hidden";} ?>>
             <table>
@@ -65,10 +64,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <tr>
                     <td><label> School : </label></td>
                     <td><input type="text" name="sch" value="<?php echo "$c_sch"; ?>" class="inp1" <?php if($c_sch!=$sch){?>id="changed" <?php } ?>><label> <?php
-                    $schmaster = "schoolmaster".$ryear;
+                    $schmaster = "schoolmaster2023";
                     $school2 = "SELECT * FROM ".$schmaster." WHERE sch_no=".$c_sch;
                     $run_school2 = mysqli_query($conn,$school2);
                     $row_school2 = mysqli_fetch_array($run_school2);
+                    if($row_school2==null){
+                        $schmaster = "schoolmaster2021";
+                        $school2 = "SELECT * FROM ".$schmaster." WHERE nsch_no='".$c_sch."'";
+                        $run_school2 = mysqli_query($conn,$school2);
+                        $row_school2 = mysqli_fetch_array($run_school2);
+                    }
                     $c_abbr_name = $row_school2['abbr_name'];
                     echo "$c_abbr_name"; ?> </label></td>
                 </tr>
@@ -513,9 +518,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </table>
             <button class="btn btn-primary" type="submit" name="update"> Update </button>
             <span><b>Select Document type : </b></span>
-                <input type="radio" name="prntype" value="marksheet"><label>Marksheet</label>
-                <input type="radio" name="prntype" value="migration" ><label >Migration</label>
-                <input type="radio" name="prntype" value="passing"<?php if($ryear=="2021"){ echo "hidden"; }?>><label <?php if($ryear=="2021"){ echo "hidden"; }?> >Passing</label>
+                <input type="radio" name="prntype" value="marksheet" <?php if(intval($ryear)>=2011 && intval($ryear)<=2016){echo "hidden";}?> ><label <?php if(intval($ryear)>=2011 && intval($ryear)<=2016){echo "hidden";}?>>Marksheet</label>
+                <input type="radio" name="prntype" value="marksheetl" <?php if(intval($ryear)>=2011 && intval($ryear)<=2016){}else{echo "hidden";}?> ><label <?php if(intval($ryear)>=2011 && intval($ryear)<=2016){}else{echo "hidden";}?>>Left Marksheet</label>
+                <input type="radio" name="prntype" value="marksheetr" <?php if(intval($ryear)>=2011 && intval($ryear)<=2016){}else{echo "hidden";}?> ><label <?php if(intval($ryear)>=2011 && intval($ryear)<=2016){}else{echo "hidden";}?>>Right Marksheet</label>
+                <input type="radio" name="prntype" value="migration" <?php if($doctype=="dublicate"){ echo "hidden"; }?> ><label <?php if($doctype=="dublicate"){ echo "hidden"; }?>>Migration</label>
+                <input type="radio" name="prntype" value="passing" <?php if((intval($ryear)>=2011 && intval($ryear)<=2015)||intval($ryear)==2021){echo "hidden";}?>><label <?php if((intval($ryear)>=2011 && intval($ryear)<=2015)||intval($ryear)==2021){echo "hidden";}?> >Passing</label>
+                <input type="radio" name="prntype" value="passingl" <?php if((intval($ryear)>=2011 && intval($ryear)<=2015)||intval($ryear)==2021){}else{echo "hidden";}?>><label <?php if((intval($ryear)>=2011 && intval($ryear)<=2015)||intval($ryear)==2021){}else{echo "hidden";}?> >Left Passing</label>
+                <input type="radio" name="prntype" value="passingr" <?php if((intval($ryear)>=2011 && intval($ryear)<=2015)||intval($ryear)==2021){}else{echo "hidden";}?>><label <?php if((intval($ryear)>=2011 && intval($ryear)<=2015)||intval($ryear)==2021){}else{echo "hidden";}?> >Right Passing</label>
             <button class="btn btn-success" type="submit" name="print" formaction="printing.php"> Print </button>
         </form>
     </div><?php } ?>
@@ -523,7 +532,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="form-header">
             <center><span class="text-light bg-dark" style="font-size:20px;">Declared Result</span></center>
             <span style="font-size:25px;float:left;color:red;font-weight:600;"><b><?php if($rexamtype=="m")$exm="MAIN"; if($rexamtype=="c")$exm="COMPARTMENT"; if($rexamtype=="r")$exm="MERGED"; $restype=$ryear." ".$exm." EXAM"; echo $restype; ?></b></span>
-            <span style="font-size:25px;float:right;color:red;font-weight:600;"><b><?php if($ryear!="2019" && $ryear!="2018"){ echo $revised; }?></b></span>
         </div>
         <form class="navbar-form navbar-left" style="width:100%;padding:5px;" method="post" action="index.php?mmsection" id="insertdata">
             <table>
@@ -557,6 +565,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     $school = "SELECT * FROM ".$schmaster." WHERE sch_no='".$sch."'";
                     $run_school = mysqli_query($conn,$school);
                     $row_school = mysqli_fetch_array($run_school);
+                    if($row_school==null){
+                        $schmaster = "schoolmaster2021";
+                        $school = "SELECT * FROM ".$schmaster." WHERE nsch_no='".$sch."'";
+                        $run_school = mysqli_query($conn,$school);
+                        $row_school = mysqli_fetch_array($run_school);
+                    }
                     $abbr_name = $row_school['abbr_name'];
                     echo $abbr_name; ?></label></td>
                 </tr>
